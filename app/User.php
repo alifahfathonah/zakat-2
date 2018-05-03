@@ -41,4 +41,11 @@ class User extends Authenticatable
     {
         return $this->hasMany(Transaksi::class);
     }
+
+    public function hasRole($roleName)
+    {
+        if ($this->role->name == $roleName) {
+            return true;
+        }
+    }
 }

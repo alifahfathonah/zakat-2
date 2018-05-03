@@ -21,7 +21,7 @@
                 </div>
                 <div class="content">
                     <div class="text">JUMLAH ZAKAT UANG</div>
-                    <p>Rp. <span class="number count-to" id="uang" data-from="0" data-to="250000" data-speed="1000" data-fresh-interval="20"></span></p>
+                    <p>Rp. <span class="money number count-to" id="uang" data-from="0" data-to="250000" data-speed="1000" data-fresh-interval="20"></span></p>
                 </div>
             </div>
         </div>
@@ -32,7 +32,7 @@
                 </div>
                 <div class="content">
                     <div class="text">JUMLAH ZAKAT BERAS</div>
-                    <p><span class="number count-to" data-from="0" data-to="50,5" data-decimals="1" data-speed="1000" data-fresh-interval="20"></span> Liter</p>
+                    <p><span class="number count-to" data-from="0" data-to="50.5" data-decimals="1" data-speed="1000" data-fresh-interval="20"></span> Liter</p>
                 </div>
             </div>
         </div>
@@ -101,4 +101,13 @@
         </div>
     </div>
 </div>  --}}
+<script>
+    $(document).ready(function(){
+        $('.money').data('countToOptions', {
+            formatter: function(value, options) {
+            return value.toFixed(options.decimals).replace(/\B(?=(?:\d{3})+(?!\d))/g, ',');
+            }
+        });
+    });
+</script>
 @endsection
