@@ -12,6 +12,17 @@
                     <div class="email">Tamu</div>
                 </div>
             </div>
+            <div class="menu">
+                <ul class="list">
+                <li class="header">MAIN NAVIGATION</li>
+                    <li class="{{ (\Request::route()->getName() == 'home') ? 'active' : '' }}">
+                        <a href="{{route('home')}}">
+                            <i class="material-icons">dashboard</i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
             <!-- #User Info -->
             @else
             <!-- User Info -->
