@@ -41,7 +41,7 @@
 
 <body class="theme-indigo">
     <!-- Page Loader -->
-    {{--  <div class="page-loader-wrapper">
+    <div class="page-loader-wrapper">
         <div class="loader">
             <div class="preloader">
                 <div class="spinner-layer pl-red">
@@ -53,10 +53,10 @@
                     </div>
                 </div>
             </div>
-            <p>Please wait...</p>
+            <p>Tunggu Sebentar...</p>
         </div>
     </div>
-    <!-- #END# Page Loader -->  --}}
+    <!-- #END# Page Loader -->
     <!-- Overlay For Sidebars -->
     <div class="overlay"></div>
     <!-- #END# Overlay For Sidebars -->
@@ -80,6 +80,9 @@
                             @guest
                                 <a href="{{route('login')}}">
                                     <i class="material-icons">exit_to_app</i> Masuk
+                                </a>
+                                <a href="{{route('register')}}">
+                                    <i class="material-icons">supervisor_account</i> Daftar
                                 </a>
                             @else
                                 <a href="{{ route('logout') }}" onclick="event.preventDefault();
