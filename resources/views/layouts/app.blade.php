@@ -32,6 +32,10 @@
     <!-- Custom Css -->
     <link href="{{ asset('theme/css/style.css') }}" rel="stylesheet">
 
+    <!-- dataTables Css -->
+    {{--  <link href="{{ asset('theme/plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css') }}" rel="stylesheet">  --}}
+    <link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
+
     <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
     <link href="{{ asset('theme/css/themes/all-themes.css') }}" rel="stylesheet" />
 
@@ -150,9 +154,9 @@
     <!-- Demo Js -->
     <script src="{{ asset('theme/js/demo.js') }}"></script>
 
-    {{--  <!-- DataTable -->
-    <script src="{{ asset('theme/plugins/datatables/jquery.dataTables.min.js')}}"></script>
-    <script src="{{ asset('theme/plugins/datatables/dataTables.bootstrap.js')}}"></script>  --}}
+    <!-- DataTable -->
+    {{--  <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>  --}}
+    {{--  <script src="{{ asset('theme/plugins/datatables/dataTables.bootstrap.js')}}"></script>  --}}
 
     <!-- Jquery DataTable Plugin Js -->
     <script src="{{ asset('theme/plugins/jquery-datatable/jquery.dataTables.js')}}"></script>
