@@ -36,6 +36,15 @@
     {{--  <link href="{{ asset('theme/plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css') }}" rel="stylesheet">  --}}
     <link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
 
+    <!-- Bootstrap Material Datetime Picker Css -->
+    <link href="{{ asset('theme/plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css') }}" rel="stylesheet" />
+
+    <!-- Wait Me Css -->
+    <link href="{{ asset('theme/plugins/waitme/waitMe.css') }}" rel="stylesheet" />
+
+    <!-- Bootstrap Select Css -->
+    <link href="{{ asset('theme/plugins/bootstrap-select/css/bootstrap-select.css') }}" rel="stylesheet" />
+
     <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
     <link href="{{ asset('theme/css/themes/all-themes.css') }}" rel="stylesheet" />
 
@@ -150,9 +159,24 @@
     <!-- Custom Js -->
     <script src="{{ asset('theme/js/admin.js') }}"></script>
     <script src="{{ asset('theme/js/pages/index.js') }}"></script>
+    <script src="{{ asset('theme/js/pages/forms/basic-form-elements.js') }}"></script>
+
+    <!-- Autosize Plugin Js -->
+    <script src="{{ asset('theme/plugins/autosize/autosize.js') }}"></script>
+
+    <!-- Moment Plugin Js -->
+    <script src="{{ asset('theme/plugins/momentjs/moment.js') }}"></script>
+
+    <!-- Bootstrap Material Datetime Picker Plugin Js -->
+    <script src="{{ asset('theme/plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js') }}"></script>
+
 
     <!-- Demo Js -->
     <script src="{{ asset('theme/js/demo.js') }}"></script>
+
+    <!-- Sweetalert2 Js -->
+    <script src="https://unpkg.com/sweetalert2@7.19.3/dist/sweetalert2.all.js"></script>
+    <script src="https://unpkg.com/promise-polyfill@7.1.0/dist/promise.min.js"></script>
 
     <!-- DataTable -->
     {{--  <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>  --}}

@@ -12,7 +12,7 @@ class JenisZakat extends Model
      * @var array
      */
     protected $fillable = [
-        'jenis', 
+        'jenis', 'nominal',
     ];
 
     /**

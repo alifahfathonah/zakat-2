@@ -15,7 +15,7 @@
                                 </h2>  
                             </div>
                             <div class="col-xs-12 col-sm-1 align-right">
-                                <a title="Bayar Zakat" class="btn btn-success btn-circle-lg waves-effect waves-circle waves-float col-xs-1" href="inputzakat.php"><i class="material-icons">local_atm</i></a>
+                                <a title="Bayar Zakat" class="btn btn-success btn-circle-lg waves-effect waves-circle waves-float col-xs-1" href="{{route('zakat.create')}}"><i class="material-icons">local_atm</i></a>
                             </div>
                         </div>
         			</div>
@@ -44,7 +44,9 @@
         </div>
         <script>
             $(document).ready( function () {
-                $('#tbzakat').DataTable();
+                $('#tbzakat').DataTable({
+                    responsive: true,
+                });
             } );
         </script>
 @endsection

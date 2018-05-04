@@ -19,3 +19,4 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/zakat-list', 'ZakatController@index')->name('zakat');
+Route::get('/pelaksanaan-zakat', 'ZakatController@create')->name('zakat.create');

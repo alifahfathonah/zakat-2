@@ -16,6 +16,7 @@ class CreateJenisZakatsTable extends Migration
         Schema::create('jenis_zakats', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('jenis');
+            $table->integer('nominal');
             $table->timestamps();
         });
     }
