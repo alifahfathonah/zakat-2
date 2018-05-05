@@ -58,7 +58,7 @@
                             <span>Dashboard</span>
                         </a>
                     </li>
-                    <li class="{{ (\Request::route()->getName() == 'zakat' || \Request::route()->getName() == 'zakat.create') ? 'active' : '' }}">
+                    <li class="{{ (\Request::route()->getName() == 'zakat' || \Request::route()->getName() == 'zakat.create' || \Request::route()->getName() == 'zakat.createOther') ? 'active' : '' }}">
                         <a href="{{route('zakat')}}">
                             <i class="material-icons">account_balance_wallet</i>
                             <span>Zakat</span>

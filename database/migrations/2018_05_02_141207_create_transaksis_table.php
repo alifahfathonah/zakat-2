@@ -20,7 +20,7 @@ class CreateTransaksisTable extends Migration
             $table->integer('jeniszakat_id')->unsigned();
             $table->index(['muzakki_id','user_id','jeniszakat_id']);
             $table->integer('jiwa');
-            $table->float('beras_fitrah',5,2);
+            $table->float('beras_fitrah',5,1);
             $table->integer('uang_fitrah');
             $table->integer('fidyah');
             $table->integer('zakat_maal');

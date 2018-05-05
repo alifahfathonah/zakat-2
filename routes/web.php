@@ -1,5 +1,6 @@
 <?php
-
+use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,4 +20,8 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/zakat-list', 'ZakatController@index')->name('zakat');
-Route::get('/pelaksanaan-zakat', 'ZakatController@create')->name('zakat.create');
+Route::get('/pelaksanaan-zakat', 'ZakatController@create')->name('zakat.createOther');
+Route::get('/pelaksanaan-zakat/{id}', 'ZakatController@create')->name('zakat.create');
+Route::get('nominal/{nominal}', 'ZakatController@getNominal');
+Route::get('search/muzakki/{nama}', 'ZakatController@cariMuzakki');
+Route::post('bayar-zakat', 'ZakatController@storeZakat')->name('zakat.store');
