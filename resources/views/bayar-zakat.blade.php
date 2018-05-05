@@ -22,7 +22,7 @@
                             <div class="form-group form-float">
                                 <div>
                                     <select name="tipe" id="tipe" required="" class="select">
-										<option value="0">-- pilih nominal zakat --</option> 
+										<option value="">-- pilih nominal zakat --</option> 
                                         @foreach($jenis_zakats as $jenis)
                                             <option value="{{ $jenis->id }}">{{ $jenis->jenis }}</option>
                                         @endforeach
@@ -67,7 +67,8 @@
                     		</div>
                     		<div class="row clearfix">
                                 <div class="">
-                                <input type="submit" name="insert" id="insert" value="MASUKKAN" class="btn btn-primary m-t-15 waves-effect">
+								{{--  <button type="button" class="btn btn-primary m-t-15 waves-effect" id="insert">MASUKKAN</button>  --}}
+                                <input type="button" name="insert" id="insert" value="MASUKKAN" class="btn btn-primary m-t-15 waves-effect">
                                 <input type="reset" class="btn btn-primary m-t-15 waves-effect" value="RESET">
                                 </div>
                             </div>

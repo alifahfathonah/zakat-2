@@ -49,7 +49,13 @@
 							</tr>
 							<tr>
 								<th>TIPE NOMINAL ZAKAT</th>
-								<td>{{"Rp. ".number_format($transaksi->uang_fitrah,0,'',',').',-' }}</td>
+								<td>
+								@if(isset($transaksi->jeniszakat->jenis))
+								{{"Rp. ".number_format($transaksi->jeniszakat->jenis,0,'',',').',-' }}
+								@else
+								Rp. 0,-
+								@endif
+								</td>
 							</tr>
 							<tr>
 								<th>JUMLAH JIWA</th>
