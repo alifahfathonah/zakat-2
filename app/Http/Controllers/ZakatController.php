@@ -78,7 +78,7 @@ class ZakatController extends Controller
                 'jeniskelamin' => $request->kelamin,
             ]);
 
-            Transaksi::create([
+            $trans = Transaksi::create([
                 'muzakki_id' => $Muzakki->id,
                 'user_id' => Auth::user()->id,
                 'jeniszakat_id' => $request->tipe,
@@ -99,7 +99,7 @@ class ZakatController extends Controller
             $Muzakki->jeniskelamin = $request->kelamin;
             $Muzakki->save();
 
-            Transaksi::create([
+            $trans = Transaksi::create([
                 'muzakki_id' => $idmuzakki,
                 'user_id' => Auth::user()->id,
                 'jeniszakat_id' => $request->tipe,
@@ -111,7 +111,14 @@ class ZakatController extends Controller
                 'infaq' => $request->infaq,
             ]);
         }
+        $idtrans = base64_encode($trans->id);
+        return redirect('konfirmasi/'.$idtrans);
+    }
 
-        return redirect()->route('home');
+    public function showInsertedZakat(Request $resuest, $id){
+        $idTransaksi = base64_decode($id);
+        $transaksi = Transaksi::findOrfail($idTransaksi);
+
+        return view('konfirmasi-zakat', compact('transaksi'));
     }
 }

@@ -25,3 +25,4 @@ Route::get('/pelaksanaan-zakat/{id}', 'ZakatController@create')->name('zakat.cre
 Route::get('nominal/{nominal}', 'ZakatController@getNominal');
 Route::get('search/muzakki/{nama}', 'ZakatController@cariMuzakki');
 Route::post('bayar-zakat', 'ZakatController@storeZakat')->name('zakat.store');
+Route::get('konfirmasi/{id}', 'ZakatController@showInsertedZakat')->name('zakat.confirmation');
