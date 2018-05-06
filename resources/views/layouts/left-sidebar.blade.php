@@ -5,7 +5,7 @@
             <!-- User Info -->
             <div class="user-info">
                 <div class="image">
-                    <img src="{{ asset('profile.jpg') }}" width="48" height="48" alt="User" />
+                    <img src="{{ asset('logo.png')}}" width="48" height="48" alt="User" />
                 </div>
                 <div class="info-container">
                     <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">PRISMA</div>
@@ -15,7 +15,7 @@
             <div class="menu">
                 <ul class="list">
                 <li class="header">MAIN NAVIGATION</li>
-                    <li class="{{ (\Request::route()->getName() == 'home') ? 'active' : '' }}">
+                    <li class="active">
                         <a href="{{route('home')}}">
                             <i class="material-icons">dashboard</i>
                             <span>Dashboard</span>
@@ -58,7 +58,7 @@
                             <span>Dashboard</span>
                         </a>
                     </li>
-                    <li class="{{ (\Request::route()->getName() == 'zakat' || \Request::route()->getName() == 'zakat.create' || \Request::route()->getName() == 'zakat.createOther' || \Request::route()->getName() == 'zakat.confirmation') ? 'active' : '' }}">
+                    <li class="{{ (\Request::route()->getName() == 'zakat' || \Request::route()->getName() == 'zakat.create' || \Request::route()->getName() == 'zakat.createOther' || \Request::route()->getName() == 'zakat.confirmation' || \Request::route()->getName() == 'zakat.edit') ? 'active' : '' }}">
                         <a href="{{route('zakat')}}">
                             <i class="material-icons">account_balance_wallet</i>
                             <span>Zakat</span>

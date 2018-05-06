@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <title>@yield('title')</title>
+    <title>@yield('title') - {{ config('app.name', 'Laravel') }}</title>
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -33,8 +33,8 @@
     <link href="{{ asset('theme/css/style.css') }}" rel="stylesheet">
 
     <!-- dataTables Css -->
-    {{--  <link href="{{ asset('theme/plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css') }}" rel="stylesheet">  --}}
-    <link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
+    <link href="{{ asset('theme/plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css') }}" rel="stylesheet">
+    {{--  <link href="https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.css" rel="stylesheet">  --}}
 
     <!-- Bootstrap Material Datetime Picker Css -->
     <link href="{{ asset('theme/plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css') }}" rel="stylesheet" />
@@ -57,7 +57,7 @@
 </head>
 
 <body class="theme-indigo">
-    <!-- Page Loader -->
+    {{--  <!-- Page Loader -->
     <div class="page-loader-wrapper">
         <div class="loader">
             <div class="preloader">
@@ -73,7 +73,7 @@
             <p>Tunggu Sebentar...</p>
         </div>
     </div>
-    <!-- #END# Page Loader -->
+    <!-- #END# Page Loader -->  --}}
     <!-- Overlay For Sidebars -->
     <div class="overlay"></div>
     <!-- #END# Overlay For Sidebars -->
@@ -121,6 +121,7 @@
     </nav>
     <!-- #Top Bar -->
     @include('layouts.left-sidebar')
+    @include('layouts.alerts')
 
     <section class="content">
         <div class="container-fluid">
@@ -179,11 +180,11 @@
     <script src="{{ asset('theme/js/demo.js') }}"></script>
 
     <!-- DataTable -->
-    {{--  <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>  --}}
-    {{--  <script src="{{ asset('theme/plugins/datatables/dataTables.bootstrap.js')}}"></script>  --}}
+    <script src="https://cdn.datatables.net/v/dt/dt-1.10.16/r-2.2.1/datatables.min.js"></script>
+    <script src="{{ asset('theme/plugins/datatables/dataTables.bootstrap.js')}}"></script>
 
     <!-- Jquery DataTable Plugin Js -->
-    <script src="{{ asset('theme/plugins/jquery-datatable/jquery.dataTables.js')}}"></script>
+    {{--  <script src="{{ asset('theme/plugins/jquery-datatable/jquery.dataTables.js')}}"></script>  --}}
     <script src="{{ asset('theme/plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js')}}"></script>
     <script src="{{ asset('theme/plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js')}}"></script>
     <script src="{{ asset('theme/plugins/jquery-datatable/extensions/export/buttons.flash.min.js')}}"></script>

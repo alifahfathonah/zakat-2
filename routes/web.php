@@ -26,3 +26,6 @@ Route::get('nominal/{nominal}', 'ZakatController@getNominal');
 Route::get('search/muzakki/{nama}', 'ZakatController@cariMuzakki');
 Route::post('bayar-zakat', 'ZakatController@storeZakat')->name('zakat.store');
 Route::get('konfirmasi/{id}', 'ZakatController@showInsertedZakat')->name('zakat.confirmation');
+Route::get('list-transaksi/', 'ZakatController@getZakatData');
+Route::get('edit-transaksi/{id}', 'ZakatController@editZakat')->name('zakat.edit');
+Route::patch('update-transaksi/{transaksi}', 'ZakatController@updateZakat')->name('zakat.update');

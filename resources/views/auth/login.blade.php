@@ -35,6 +35,7 @@
             <a href="javascript:void(0);">Zakat<b>PRISMA</b></a>
             <small>Aplikasi Manajemen Zakat</small>
         </div>
+        @include('layouts.alerts')
         <div class="card">
             <div class="body">
                 <form id="sign_in" method="POST"  action="{{ route('login') }}">

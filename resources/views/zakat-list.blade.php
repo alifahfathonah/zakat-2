@@ -63,16 +63,15 @@
                             <table class="table table-bordered table-striped table-hover dataTable js-exportable" id="tbzakat">
                                 <thead>
                                     <tr>
-                                        <th>NO.</th>
                                         <th>NAMA</th>
                                         <th>JIWA</th>
+                                        <th>JENIS</th>
                                         <th>BERAS</th>
                                         <th>UANG</th>
                                         <th>FIDYAH</th>
                                         <th>ZAKAT MAAL</th>
                                         <th>INFAQ</th>
                                         <th>AMIL</th>
-                                        <th>OPSI</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -83,10 +82,26 @@
         	</div>
         </div>
         <script>
-            $(document).ready( function () {
+            jQuery(document).ready( function () {
                 $('#table-hasil').hide();
                 $('#tbzakat').DataTable({
                     responsive: true,
+                    processing: true,
+                    serverSide: true,
+                    ajax: {
+                        url: '{{ url("list-transaksi") }}'
+                    },
+                    columns: [
+                    {data: 'nama', name: 'muzakkis.name'},
+                    {data: 'jiwa', name: 'transaksis.jiwa'},
+                    {data: 'jenis', name: 'jenis_zakats.jenis', orderable: false},
+                    {data: 'beras_fitrah', name: 'transaksis.beras_fitrah'},
+                    {data: 'uang_fitrah', name: 'transaksis.uang_fitrah'},
+                    {data: 'fidyah', name: 'transaksis.fidyah'},
+                    {data: 'zakat_maal', name: 'transaksis.zakat_maal'},
+                    {data: 'infaq', name: 'transaksis.infaq'},
+                    {data: 'name', name: 'users.name'},
+                ],
                 });
                 $( "#nm" ).keyup(function() {
                     $('#table-hasil').show();
