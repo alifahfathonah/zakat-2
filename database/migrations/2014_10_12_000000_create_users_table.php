@@ -19,8 +19,8 @@ class CreateUsersTable extends Migration
             $table->string('username',25)->unique();
             $table->string('email')->unique();
             $table->string('password');
-            $table->integer('role_id')->unsigned();
-            $table->enum('status', ['aktif', 'tidak aktif']);
+            $table->integer('role_id')->unsigned()->default('2');
+            $table->enum('status', ['aktif', 'tidak aktif'] )->default('tidak aktif');
             $table->index('role_id');
             $table->rememberToken();
             $table->timestamps();

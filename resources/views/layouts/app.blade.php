@@ -121,7 +121,9 @@
     </nav>
     <!-- #Top Bar -->
     @include('layouts.left-sidebar')
-    @include('layouts.alerts')
+    <div class="container">
+        @include('layouts.alerts')
+    </div>
 
     <section class="content">
         <div class="container-fluid">
