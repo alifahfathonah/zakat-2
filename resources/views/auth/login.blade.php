@@ -34,6 +34,11 @@
         <div class="logo">
             <a href="javascript:void(0);">Zakat<b>PRISMA</b></a>
             <small>Aplikasi Manajemen Zakat</small>
+            @if ($errors->has('username'))
+                <div class="alert alert-danger">
+                    <strong>Mohon Maaf</strong> {{ $errors->first('username') }}
+                </div>
+            @endif
         </div>
         @include('layouts.alerts')
         <div class="card">
@@ -46,12 +51,7 @@
                             <i class="material-icons">person</i>
                         </span>
                         <div class="form-line">
-                            <input type="text" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="username" placeholder="Username" value="{{ old('email') }}" required autofocus>
-                            @if ($errors->has('email'))
-                                <span class="invalid-feedback">
-                                    <strong>{{ $errors->first('email') }}</strong>
-                                </span>
-                            @endif
+                            <input type="text" class="form-control{{ $errors->has('username') ? ' is-invalid' : '' }}" name="username" placeholder="Username" value="{{ old('username') }}" required autofocus>
                         </div>
                     </div>
                     <div class="input-group">

@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'failed' => 'Email/Password ini tidak cocok dengan catatan pengguna kami.',
+    'failed' => 'Email/Password ini tidak cocok dengan database kami/Akun anda belum diaktifkan oleh web master.',
     'throttle' => 'Terlalu banyak upaya masuk. Silakan coba lagi dalam :seconds detik.',
 
 ];

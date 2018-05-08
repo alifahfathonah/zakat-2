@@ -121,12 +121,10 @@
     </nav>
     <!-- #Top Bar -->
     @include('layouts.left-sidebar')
-    <div class="container">
-        @include('layouts.alerts')
-    </div>
 
     <section class="content">
         <div class="container-fluid">
+            @include('layouts.alerts')
             @yield('content')
         </div>
     </section>
