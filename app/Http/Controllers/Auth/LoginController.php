@@ -41,28 +41,4 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-    /**
-     * Validate the user login request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return void
-     */
-    protected function validateLogin(Request $request)
-    {
-        $this->validate($request, [
-            $this->username() => [
-                'required|string',
-                Rule::exists('users')->where(function($query){
-                    $query->where('status','aktif');
-                }),
-            ],
-            'password' => 'required|string',
-        ], $this->validationError());
-    }
-
-    public function validationError(){
-        return [
-            $this->username() . '.exists' => 'Akun Anda Belum Aktif'
-        ];
-    }
 }

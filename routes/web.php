@@ -29,3 +29,5 @@ Route::get('konfirmasi/{id}', 'ZakatController@showInsertedZakat')->name('zakat.
 Route::get('list-transaksi/', 'ZakatController@getZakatData');
 Route::get('edit-transaksi/{id}', 'ZakatController@editZakat')->name('zakat.edit');
 Route::patch('update-transaksi/{transaksi}', 'ZakatController@updateZakat')->name('zakat.update');
+Route::get('make-invoice/{id}', 'ZakatController@createPDF')->name('zakat.invoice');
+

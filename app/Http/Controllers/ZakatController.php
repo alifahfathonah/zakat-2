@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\DB;
 use Yajra\Datatables\Datatables;
+use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Http\Request;
 use App\JenisZakat;
 use App\Transaksi;
@@ -128,9 +129,15 @@ class ZakatController extends Controller
         $zakats = DB::table('transaksis')->join('muzakkis', 'transaksis.muzakki_id', '=', 'muzakkis.id')
             ->join('users', 'transaksis.user_id', '=', 'users.id')
             ->join('jenis_zakats', 'transaksis.jeniszakat_id', '=', 'jenis_zakats.id')
-            ->select(['muzakkis.name as nama', 'transaksis.jiwa', 'jenis_zakats.jenis', 'transaksis.beras_fitrah', 'transaksis.uang_fitrah', 'transaksis.fidyah', 'transaksis.zakat_maal', 'transaksis.infaq', 'users.name']);
+            ->select(['transaksis.id','muzakkis.name as nama', 'transaksis.jiwa', 'jenis_zakats.jenis', 'transaksis.beras_fitrah', 'transaksis.uang_fitrah', 'transaksis.fidyah', 'transaksis.zakat_maal', 'transaksis.infaq', 'users.name']);
 
-        return Datatables::of($zakats)->make();
+        return Datatables::of($zakats)
+            ->addColumn('action', function ($zakats) {
+                return '<a href="'. url('make-invoice').'/'.base64_encode($zakats->id).'" class="btn btn-xs btn-primary" target="_blank"><i class="material-icons">print</i></a>';
+            })
+            ->editColumn('id', 'ID: {{$id}}')
+            ->removeColumn('password')
+            ->make(true);
     }
 
     public function editZakat(Request $resuest, $id){
@@ -141,7 +148,8 @@ class ZakatController extends Controller
         return view('edit-zakat', compact('transaksi','jenis_zakats'));
     }
 
-    public function updateZakat(Transaksi $transaksi, Request $request){
+    public function updateZakat(Transaksi $transaksi, Request $request)
+    {
         $transaksi->update([
             'jeniszakat_id' => request('tipe'),
             'jiwa' => request('jiwa'),
@@ -164,7 +172,18 @@ class ZakatController extends Controller
         return redirect()->route('zakat.confirmation',base64_encode($transaksi->id));
     }
 
-    public function convertBilanganToKalimat($bilangan){
+    public function createPDF($id)
+    {
+        $id_transaksi = base64_decode($id);
+        $transaksi = Transaksi::findOrfail($id_transaksi);
+        $val = array($transaksi->uang_fitrah,$transaksi->fidyah,$transaksi->zakat_maal,$transaksi->infaq);
+        $data = array_sum($val);
+
+        return view('zakat.invoice',compact('transaksi','data'));
+    }
+
+    public static function convertBilanganToKalimat($bilangan)
+    {
         $angka = array('0','0','0','0','0','0','0','0','0','0',
                  '0','0','0','0','0','0');
         $kata = array('','satu','dua','tiga','empat','lima',
@@ -250,5 +269,39 @@ class ZakatController extends Controller
         }
 
         return trim($kalimat);
+    }
+
+    public static function tanggalIndo($tanggal, $cetak_hari = false)
+    {
+        $hari = array ( 1 =>    'Senin',
+            'Selasa',
+            'Rabu',
+            'Kamis',
+            'Jumat',
+            'Sabtu',
+            'Minggu'
+            );
+            
+        $bulan = array (1 =>   'Januari',
+            'Februari',
+            'Maret',
+            'April',
+            'Mei',
+            'Juni',
+            'Juli',
+            'Agustus',
+            'September',
+            'Oktober',
+            'November',
+            'Desember'
+            );
+        $split    = explode('-', $tanggal);
+        $tgl_indo = $split[2] . ' ' . $bulan[ (int)$split[1] ] . ' ' . $split[0];
+        
+        if ($cetak_hari) {
+        $num = date('N', strtotime($tanggal));
+        return $hari[$num] . ', ' . $tgl_indo;
+        }
+        return $tgl_indo;
     }
 }

@@ -19,7 +19,7 @@
                 <a title="Rubah Data" class="btn btn-success btn-circle-lg waves-effect waves-circle waves-float col-xs-1" href="{{ url('edit-transaksi')."/".base64_encode($transaksi->id) }}"><i class="material-icons">border_color</i></a>
               </div>
               <div class="col-xs-12 col-sm-1 align-right">
-                <a title="Print Kwitansi" class="btn btn-success btn-circle-lg waves-effect waves-circle waves-float col-xs-1" href="../proses/print.php?id={{ base64_encode($transaksi->id) }}" target="_blank"><i class="material-icons">print</i></a>
+                <a title="Print Kwitansi" class="btn btn-success btn-circle-lg waves-effect waves-circle waves-float col-xs-1" href="{{ url('make-invoice')."/".base64_encode($transaksi->id) }}" target="_blank"><i class="material-icons">print</i></a>
               </div>
               </div>
 					</div>

@@ -72,6 +72,7 @@
                                         <th>ZAKAT MAAL</th>
                                         <th>INFAQ</th>
                                         <th>AMIL</th>
+                                        <th>AKSI</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -101,6 +102,7 @@
                     {data: 'zakat_maal', name: 'transaksis.zakat_maal'},
                     {data: 'infaq', name: 'transaksis.infaq'},
                     {data: 'name', name: 'users.name'},
+                    {data: 'action', name: 'action', orderable: false, searchable: false},
                 ],
                 });
                 $( "#nm" ).keyup(function() {
