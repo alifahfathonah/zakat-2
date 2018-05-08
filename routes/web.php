@@ -30,4 +30,5 @@ Route::get('list-transaksi/', 'ZakatController@getZakatData');
 Route::get('edit-transaksi/{id}', 'ZakatController@editZakat')->name('zakat.edit');
 Route::patch('update-transaksi/{transaksi}', 'ZakatController@updateZakat')->name('zakat.update');
 Route::get('make-invoice/{id}', 'ZakatController@createPDF')->name('zakat.invoice');
+Route::delete('zakat/delete/{id}','ZakatController@destroy')->name('zakat.destroy');
 

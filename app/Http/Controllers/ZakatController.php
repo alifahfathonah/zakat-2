@@ -133,7 +133,24 @@ class ZakatController extends Controller
 
         return Datatables::of($zakats)
             ->addColumn('action', function ($zakats) {
-                return '<a href="'. url('make-invoice').'/'.base64_encode($zakats->id).'" class="btn btn-xs btn-primary" target="_blank"><i class="material-icons">print</i></a>';
+                return '<form method="POST" action="'.route('zakat.destroy',base64_encode($zakats->id)).'">'
+                .'<input type="hidden" name="_method" value="DELETE">'
+                .'<button title="Hapus Data" type="submit" class="btn btn-xs btn-primary waves-effect" id="insert"><i class="material-icons">delete</i></button>'
+                .'</form>'
+                .'<a title="Rubah Data" class="btn btn-xs btn-primary" href="'. url('edit-transaksi')."/".base64_encode($zakats->id) .'"><i class="material-icons">border_color</i></a>' 
+                .'<a title="Print Kwitansi" href="'. url('make-invoice').'/'.base64_encode($zakats->id).'" class="btn btn-xs btn-primary" target="_blank"><i class="material-icons">print</i></a>';
+            })
+            ->addColumn('uang_zakat', function ($zakats) {
+                return 'Rp. '.number_format($zakats->uang_fitrah,0,'',',');
+            })
+            ->addColumn('fidyah', function ($zakats) {
+                return 'Rp. '.number_format($zakats->fidyah,0,'',',');
+            })
+            ->addColumn('maal', function ($zakats) {
+                return 'Rp. '.number_format($zakats->zakat_maal,0,'',',');
+            })
+            ->addColumn('infaq', function ($zakats) {
+                return 'Rp. '.number_format($zakats->infaq,0,'',',');
             })
             ->editColumn('id', 'ID: {{$id}}')
             ->removeColumn('password')
@@ -170,6 +187,15 @@ class ZakatController extends Controller
         $Muzakki->save();
 
         return redirect()->route('zakat.confirmation',base64_encode($transaksi->id));
+    }
+
+    public  function destroy($id)
+    {
+        $idzakat = base64_decode($id);
+        $zakat = Transaksi::findOrfail($idzakat);
+        $zakat->delete();
+
+        return redirect()->route('zakat')->withSuccess('Post Berhasil Dihapus');
     }
 
     public function createPDF($id)
