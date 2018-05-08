@@ -37,7 +37,7 @@ class ZakatController extends Controller
 
     public function create($id = null)
     {
-        $jenis_zakats = JenisZakat::all();
+        $jenis_zakats = JenisZakat::latest()->take(4)->get();
         if ($id == null) {
            return view('bayar-zakat', compact('jenis_zakats'));
         } else{
@@ -177,7 +177,6 @@ class ZakatController extends Controller
             'infaq' => request('infaq'),
         ]);
         
-        $muzakki = new \App\Muzakki;
         $Muzakki = Muzakki::findOrfail(base64_decode(request('_idm')));
         $Muzakki->name = request('nama');
         $Muzakki->email = request('email');
@@ -195,7 +194,7 @@ class ZakatController extends Controller
         $zakat = Transaksi::findOrfail($idzakat);
         $zakat->delete();
 
-        return redirect()->route('zakat')->withSuccess('Post Berhasil Dihapus');
+        return redirect()->route('zakat')->withDanger('Data Transaksi Zakat Berhasil Dihapus');
     }
 
     public function createPDF($id)

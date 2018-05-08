@@ -32,3 +32,17 @@ Route::patch('update-transaksi/{transaksi}', 'ZakatController@updateZakat')->nam
 Route::get('make-invoice/{id}', 'ZakatController@createPDF')->name('zakat.invoice');
 Route::delete('zakat/delete/{id}','ZakatController@destroy')->name('zakat.destroy');
 
+Route::get('list-pengguna/', 'UserController@getUserData');
+Route::get('/users', 'UserController@index')->name('user');
+Route::patch('aktivasi/{id}', 'UserController@activateUser')->name('user.activate');
+Route::patch('deaktivasi/{id}', 'UserController@deactivateUser')->name('user.deactivate');
+Route::get('/profil/edit', function () {
+    return view('user.edit-profil');
+})->name('profil.edit');
+Route::patch('update-profil/{user}', 'UserController@updateProfil')->name('profil.update');
+Route::get('/ganti-password', function () {
+    return view('user.ganti-password');
+})->name('password.change');
+Route::patch('ganti-password/{id}', 'UserController@changePassword')->name('password.update');
+Route::get('/role/{id}', 'UserController@editRole')->name('role.edit');
+Route::patch('role-update/{id}', 'UserController@updateRole')->name('role.update');

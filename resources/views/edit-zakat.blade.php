@@ -17,7 +17,7 @@
                     	<form class="form-vertical" id="myform" action="{{route('zakat.update', $transaksi)}}" method="POST">
                     	<h2 class="card-inside-title">DATA MUZAKKI</h2>
 							@csrf
-                    {{  method_field('PATCH') }}
+                    		{{  method_field('PATCH') }}
 							<input type="hidden" name="_idm" value="{{base64_encode($transaksi->muzakki->id)}}">
                     		<div class="form-group form-float">
                     			<div class="form-line">
