@@ -42,12 +42,19 @@
 							</tr>
 							<tr>
 								<th>JENIS KELAMIN</th>
-								<td>{{$transaksi->muzakki->jeniskelamin}}</td>
+								<td>
+								@if($transaksi->muzakki->jeniskelamin === "L")
+									Laki-laki
+								@else
+									Perempuan
+								@endif
+								{{--  {{$transaksi->muzakki->jeniskelamin}}  --}}
+								</td>
 							</tr>
 							<tr>
 								<th  class="text-center info" colspan="8">DATA ZAKAT</th>
 							</tr>
-							<tr>
+							{{--  <tr>
 								<th>TIPE NOMINAL ZAKAT</th>
 								<td>
 								@if(isset($transaksi->jeniszakat->jenis))
@@ -56,7 +63,7 @@
 								Rp. 0,-
 								@endif
 								</td>
-							</tr>
+							</tr>  --}}
 							<tr>
 								<th>JUMLAH JIWA</th>
 								<td>{{$transaksi->jiwa}}</td>

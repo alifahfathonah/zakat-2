@@ -28,17 +28,17 @@
 <body class="signup-page">
     <div class="signup-box">
         <div class="logo">
-            <a href="javascript:void(0);">Admin<b>BSB</b></a>
-            <small>Admin BootStrap Based - Material Design</small>
+            <a href="javascript:void(0);"><b>{{ config('app.name', 'Laravel') }}</b></a>
+            <small>Daftar Untuk Bekerja</small>
         </div>
         <div class="card">
             <div class="body">
                 <form id="sign_up" method="POST"  action="{{ route('register') }}">
                 @csrf
-                    <div class="msg">Register a new membership</div>
+                    <div class="msg">Daftar Anggota Baru</div>
                     <div class="input-group">
                         <span class="input-group-addon">
-                            <i class="material-icons">person</i>
+                            <i class="material-icons">face</i>
                         </span>
                         <div class="form-line">
                             <input type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" placeholder="Nama Panjang" required autofocus>
@@ -51,7 +51,7 @@
                     </div>
                     <div class="input-group">
                         <span class="input-group-addon">
-                            <i class="material-icons">email</i>
+                            <i class="material-icons">person</i>
                         </span>
                         <div class="form-line">
                             <input type="text" class="form-control{{ $errors->has('username') ? ' is-invalid' : '' }}" name="username" value="{{ old('username') }}" placeholder="Username" required>

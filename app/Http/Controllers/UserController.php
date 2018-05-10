@@ -63,9 +63,9 @@ class UserController extends Controller
             $User->status = "aktif";
             $User->save();
 
-            return redirect()->route('user')->withSuccess('User Telah Diaktifkan');
+            return redirect()->route('user')->withSuccess('User '.$User->name.' Telah Diaktifkan');
         } else {
-            return redirect()->route('user')->withSuccess('User Masih Aktif');
+            return redirect()->route('user')->withSuccess('User '.$User->name.' Masih Aktif');
         }
     }
 
@@ -76,9 +76,9 @@ class UserController extends Controller
             $User->status = "tidak aktif";
             $User->save();
 
-            return redirect()->route('user')->withSuccess('User Telah Dinonaktifkan');
+            return redirect()->route('user')->withSuccess('User '.$User->name.' Telah Dinonaktifkan');
         } else {
-            return redirect()->route('user')->withSuccess('User Tidak Aktif');
+            return redirect()->route('user')->withSuccess('User '.$User->name.' Tidak Aktif');
         }
     }
 

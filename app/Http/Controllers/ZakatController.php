@@ -130,10 +130,9 @@ class ZakatController extends Controller
 
     public function getZakatData()
     {
-        $zakats = Transaksi::select(['transaksis.id','muzakkis.name as nama', 'transaksis.jiwa', 'jenis_zakats.jenis', 'transaksis.beras_fitrah', 'transaksis.uang_fitrah', 'transaksis.fidyah', 'transaksis.zakat_maal', 'transaksis.infaq', 'users.name'])
+        $zakats = Transaksi::select(['transaksis.id','muzakkis.name as nama', 'transaksis.jiwa', 'transaksis.beras_fitrah', 'transaksis.uang_fitrah', 'transaksis.fidyah', 'transaksis.zakat_maal', 'transaksis.infaq', 'users.name'])
             ->join('muzakkis', 'transaksis.muzakki_id', '=', 'muzakkis.id')
             ->join('users', 'transaksis.user_id', '=', 'users.id')
-            ->join('jenis_zakats', 'transaksis.jeniszakat_id', '=', 'jenis_zakats.id')
             ->orderBy('transaksis.id');
         
         // $zakats = DB::table('transaksis')->join('muzakkis', 'transaksis.muzakki_id', '=', 'muzakkis.id')
@@ -205,7 +204,7 @@ class ZakatController extends Controller
         $zakat = Transaksi::findOrfail($idzakat);
         $zakat->delete();
 
-        return redirect()->route('zakat')->withDanger('Data Transaksi Zakat Milik '.$zakat->muzakki->name.' Berhasil Dihapus');
+        return redirect()->route('zakat')->withSuccess('Data Transaksi Zakat Milik '.$zakat->muzakki->name.' Berhasil Dihapus');
     }
 
     public function createPDF($id)

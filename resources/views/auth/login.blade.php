@@ -32,7 +32,7 @@
 <body class="login-page">
     <div class="login-box">
         <div class="logo">
-            <a href="javascript:void(0);">Zakat<b>PRISMA</b></a>
+            <a href="javascript:void(0);"><b>{{ config('app.name', 'Laravel') }}</b></a>
             <small>Aplikasi Manajemen Zakat</small>
             @if ($errors->has('username'))
                 <div class="alert alert-danger">
@@ -45,7 +45,7 @@
             <div class="body">
                 <form id="sign_in" method="POST"  action="{{ route('login') }}">
                 @csrf
-                    <div class="msg">Masuk Untuk Memulai</div>
+                    <div class="msg">Masuk Untuk Memulai Bekerja</div>
                     <div class="input-group">
                         <span class="input-group-addon">
                             <i class="material-icons">person</i>

@@ -67,4 +67,13 @@ class LoginController extends Controller
         );
     }
 
+    public function logout(Request $request)
+    {
+        $this->guard()->logout();
+
+        $request->session()->invalidate();
+
+        return redirect('/')->withSuccess('Anda Telah Berhasil Logout');
+    }
+
 }

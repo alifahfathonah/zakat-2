@@ -121,7 +121,7 @@
                             </td>
                             
                             <td>
-                                Invoice #: 123<br>
+                                Invoice No. : INVOICE-00{{$transaksi->id}}<br>
                                 Jakarta, {{\App\Http\Controllers\ZakatController::tanggalIndo(date('Y-m-d', strtotime($transaksi->created_at)))}}<br>
                                 {{--  Due: February 1, 2015  --}}
                             </td>
@@ -274,7 +274,7 @@
                             </td>
                             
                             <td>
-                                Invoice #: 123<br>
+                                Invoice No. : INVOICE-00{{$transaksi->id}}<br>
                                 Jakarta, {{\App\Http\Controllers\ZakatController::tanggalIndo(date('Y-m-d', strtotime($transaksi->created_at)))}}<br>
                                 {{--  Due: February 1, 2015  --}}
                             </td>

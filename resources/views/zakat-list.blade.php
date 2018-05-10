@@ -65,7 +65,6 @@
                                     <tr>
                                         <th>NAMA</th>
                                         <th>JIWA</th>
-                                        <th>JENIS</th>
                                         <th>BERAS</th>
                                         <th>UANG</th>
                                         <th>FIDYAH</th>
@@ -95,7 +94,6 @@
                     columns: [
                     {data: 'nama', name: 'muzakkis.name'},
                     {data: 'jiwa', name: 'jiwa'},
-                    {data: 'jenis', name: 'jenis_zakats.jenis', orderable: false},
                     {data: 'beras_fitrah', name: 'beras_fitrah'},
                     {data: 'uang_zakat', name: 'uang_fitrah'},
                     {data: 'fidyah', name: 'fidyah'},
@@ -119,13 +117,13 @@
                 $("#tbzakat").on("click", "#hapus", function(){
                     {{--  return confirm("Yakin ingin dihapus?");  --}}
                     swal({
-                        title: 'Apakah Datanya Sudah Sesuai?',
-                        text: "Jika Data Tidak Sesuai, Anda Bisa Memodifikasinya di Halaman Edit",
+                        title: 'Apakah Kamu Yakin Ingin Dihapus?',
+                        text: "Hubungi Webmaster Untuk Mengembalikan Data Transaksi Yang Terhapus",
                         type: 'warning',
                         showCancelButton: true,
                         confirmButtonColor: '#3085d6',
                         cancelButtonColor: '#d33',
-                        confirmButtonText: 'Ya, Sudah Sesuai',
+                        confirmButtonText: 'Ya, Saya Yakin',
                         cancelButtonText: 'Tidak, batalkan!',
                         }).then((result) => {
                         if (result.value) {
