@@ -37,7 +37,7 @@ class UserController extends Controller
                 return 
                 '<form method="POST" action="'.route('user.deactivate',base64_encode($users->id)).'">'
                 .'<input type="hidden" name="_method" value="PATCH">'
-                .'<button title="Nonktifkan Pengguna" type="submit" class="btn btn-xs btn-primary waves-effect"><i class="material-icons">cancel</i></button>'
+                .'<button title="Nonaktifkan Pengguna" type="submit" class="btn btn-xs btn-primary waves-effect"><i class="material-icons">cancel</i></button>'
                 .'</form>'
                 .'<a title="Rubah Role" class="btn btn-xs btn-primary" href="'. url('role')."/".base64_encode($users->id) .'"><i class="material-icons">create</i></a>' 
                 .'<form method="POST" action="'.route('user.activate',base64_encode($users->id)).'">'

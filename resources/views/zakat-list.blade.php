@@ -116,6 +116,23 @@
 						}
 					});
                 });
+                $("#tbzakat").on("click", "#hapus", function(){
+                    {{--  return confirm("Yakin ingin dihapus?");  --}}
+                    swal({
+                        title: 'Apakah Datanya Sudah Sesuai?',
+                        text: "Jika Data Tidak Sesuai, Anda Bisa Memodifikasinya di Halaman Edit",
+                        type: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Ya, Sudah Sesuai',
+                        cancelButtonText: 'Tidak, batalkan!',
+                        }).then((result) => {
+                        if (result.value) {
+                            $('#myform').submit();
+                        }
+					})
+                });
             } );
         </script>
 @endsection

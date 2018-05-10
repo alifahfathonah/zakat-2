@@ -48,7 +48,8 @@ class ZakatController extends Controller
     	
     }
 
-    public function cariMuzakki(Request $request, $nama){
+    public function cariMuzakki(Request $request, $nama)
+    {
         $queries = Muzakki::where('name', 'LIKE', '%'.$nama.'%')
             ->take(5)->get();
             $html = array();
@@ -65,12 +66,14 @@ class ZakatController extends Controller
         return Response($html);
     }
 
-    public function getNominal(Request $request, $nominal){
+    public function getNominal(Request $request, $nominal)
+    {
         $hasil = JenisZakat::find($nominal);
         return Response::json($hasil);
     }
 
-    public function storeZakat(Request $request){
+    public function storeZakat(Request $request)
+    {
         if ($request->cek == "new") {
             $Muzakki = Muzakki::create([
                 'name' => $request->nama,
@@ -117,7 +120,8 @@ class ZakatController extends Controller
         return redirect('konfirmasi/'.$idtrans);
     }
 
-    public function showInsertedZakat(Request $resuest, $id){
+    public function showInsertedZakat(Request $resuest, $id)
+    {
         $idTransaksi = base64_decode($id);
         $transaksi = Transaksi::findOrfail($idTransaksi);
 
@@ -126,16 +130,23 @@ class ZakatController extends Controller
 
     public function getZakatData()
     {
-        $zakats = DB::table('transaksis')->join('muzakkis', 'transaksis.muzakki_id', '=', 'muzakkis.id')
+        $zakats = Transaksi::select(['transaksis.id','muzakkis.name as nama', 'transaksis.jiwa', 'jenis_zakats.jenis', 'transaksis.beras_fitrah', 'transaksis.uang_fitrah', 'transaksis.fidyah', 'transaksis.zakat_maal', 'transaksis.infaq', 'users.name'])
+            ->join('muzakkis', 'transaksis.muzakki_id', '=', 'muzakkis.id')
             ->join('users', 'transaksis.user_id', '=', 'users.id')
             ->join('jenis_zakats', 'transaksis.jeniszakat_id', '=', 'jenis_zakats.id')
-            ->select(['transaksis.id','muzakkis.name as nama', 'transaksis.jiwa', 'jenis_zakats.jenis', 'transaksis.beras_fitrah', 'transaksis.uang_fitrah', 'transaksis.fidyah', 'transaksis.zakat_maal', 'transaksis.infaq', 'users.name']);
+            ->orderBy('transaksis.id');
+        
+        // $zakats = DB::table('transaksis')->join('muzakkis', 'transaksis.muzakki_id', '=', 'muzakkis.id')
+        //     ->join('users', 'transaksis.user_id', '=', 'users.id')
+        //     ->join('jenis_zakats', 'transaksis.jeniszakat_id', '=', 'jenis_zakats.id')
+        //     ->select(['transaksis.id','muzakkis.name as nama', 'transaksis.jiwa', 'jenis_zakats.jenis', 'transaksis.beras_fitrah', 'transaksis.uang_fitrah', 'transaksis.fidyah', 'transaksis.zakat_maal', 'transaksis.infaq', 'users.name'])
+        //     ->where('transaksis.deleted_at', '=', NULL);
 
         return Datatables::of($zakats)
             ->addColumn('action', function ($zakats) {
-                return '<form method="POST" action="'.route('zakat.destroy',base64_encode($zakats->id)).'">'
+                return '<form method="POST" id="myform" action="'.route('zakat.destroy',base64_encode($zakats->id)).'">'
                 .'<input type="hidden" name="_method" value="DELETE">'
-                .'<button title="Hapus Data" type="submit" class="btn btn-xs btn-primary waves-effect" id="insert"><i class="material-icons">delete</i></button>'
+                .'<button title="Hapus Data" type="button" class="btn btn-xs btn-primary waves-effect" id="hapus"><i class="material-icons">delete</i></button>'
                 .'</form>'
                 .'<a title="Rubah Data" class="btn btn-xs btn-primary" href="'. url('edit-transaksi')."/".base64_encode($zakats->id) .'"><i class="material-icons">border_color</i></a>' 
                 .'<a title="Print Kwitansi" href="'. url('make-invoice').'/'.base64_encode($zakats->id).'" class="btn btn-xs btn-primary" target="_blank"><i class="material-icons">print</i></a>';
@@ -194,7 +205,7 @@ class ZakatController extends Controller
         $zakat = Transaksi::findOrfail($idzakat);
         $zakat->delete();
 
-        return redirect()->route('zakat')->withDanger('Data Transaksi Zakat Berhasil Dihapus');
+        return redirect()->route('zakat')->withDanger('Data Transaksi Zakat Milik '.$zakat->muzakki->name.' Berhasil Dihapus');
     }
 
     public function createPDF($id)
@@ -328,5 +339,18 @@ class ZakatController extends Controller
         return $hari[$num] . ', ' . $tgl_indo;
         }
         return $tgl_indo;
+    }
+
+    public function storeJenis(Request $request)
+    {
+        // for ($x = 1; $x < 5; $x++) {
+        //     JenisZakat::create([
+        //         'jenis' => $request->jenis.$x,
+        //         'nominal' => $request->nominal.$x,
+        //     ]);
+        // }
+        dd($request);
+
+        return redirect()->route('home')->withSuccess('Jenis Zakat Berhasil diinput');
     }
 }

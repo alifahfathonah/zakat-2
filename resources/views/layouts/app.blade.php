@@ -181,7 +181,7 @@
 
     <!-- DataTable -->
     <script src="https://cdn.datatables.net/v/dt/dt-1.10.16/r-2.2.1/datatables.min.js"></script>
-    <script src="{{ asset('theme/plugins/datatables/dataTables.bootstrap.js')}}"></script>
+    {{--  <script src="{{ asset('theme/plugins/datatables/dataTables.bootstrap.js')}}"></script>  --}}
 
     <!-- Jquery DataTable Plugin Js -->
     {{--  <script src="{{ asset('theme/plugins/jquery-datatable/jquery.dataTables.js')}}"></script>  --}}

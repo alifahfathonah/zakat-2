@@ -46,3 +46,8 @@ Route::get('/ganti-password', function () {
 Route::patch('ganti-password/{id}', 'UserController@changePassword')->name('password.update');
 Route::get('/role/{id}', 'UserController@editRole')->name('role.edit');
 Route::patch('role-update/{id}', 'UserController@updateRole')->name('role.update');
+
+Route::get('/jenis-zakat', function () {
+    return view('zakat.jenis-zakat');
+})->name('jeniszakat.change');
+Route::post('jenis-zakat-store', 'ZakatController@storeJenis')->name('jeniszakat.store');
