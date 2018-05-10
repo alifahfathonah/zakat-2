@@ -3,7 +3,7 @@
 @section('title', 'Jenis Zakat')
 @section('content')
 <div class="block-header">
-            <h2>PROFIL PENGGUNA</h2>
+            <h2>JENIS ZAKAT</h2>
         </div>
         <div class="row clearfix">
         	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -17,43 +17,75 @@
                             </div>
                         </div>
         			</div>
-                    <div class="body">
-                        <form action="{{route('jeniszakat.store',Auth::user()->id)}}" method="post" id="profil">
-                            @csrf
-                            @for ($i = 1; $i < 5; $i++)
-                            <div class="row clearfix">
-                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
-                                    <div class="form-group">
-                                        <div class="form-line">
-                                            <input type="text" name="jenis{{{ $i }}}" class="form-control" placeholder="jenis">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
-                                    <div class="form-group">
-                                        <div class="form-line">
-                                            <input type="text" name="nominal{{ $i }}" class="form-control" placeholder="Nominal">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            @endfor
-                            <div class="row clearfix">
-                                <div class="">
-                                <input type="button" name="insert" id="insert" value="MASUKKAN" class="btn btn-primary m-t-15 waves-effect">
-                                </div>
-                            </div>
-                        </form>
+                    <div class="body table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>JENIS</th>
+                                    <th>NOMINAL</th>
+                                    <th>AKSI</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @php($i=1)
+                                @foreach($jenises as $jenis)
+                                    <tr>
+                                        <td>{{$i}}</td>
+                                        <td>{{$jenis->jenis}}</td>
+                                        <td>{{$jenis->nominal}}</td>
+                                        <td><a href="#" id="{{$i}}" class="btn bg-indigo waves-effect modal" data-toggle="modal" data-target="#defaultModal">Edit</a></td>
+                                    </tr>
+                                    @php($i++)
+                                @endforeach
+                            </tbody>
+                        </table>
                     </div>
         		</div>
         	</div>
+        </div>
+        <div class="modal fade" id="defaultModal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="defaultModalLabel">Modal title</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form action="" method="post" id="profil">
+                            @csrf
+                            <div class="row clearfix">
+                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                                <input type="text" id="jenis" name="jenis" class="form-control" placeholder="Jenis">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                                <input type="text" id="nominal" name="nominal" class="form-control" placeholder="Nominal">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <input type="button" name="insert" id="insert" value="MASUKKAN" class="btn btn-primary m-t-15 waves-effect">
+                                    </div>
+                                </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+                    </div>
+                </div>
+            </div>
         </div>
         <script>
                 $(document).ready(function(){
                     $("#insert").click(function(){
                         swal({
-                            title: 'Apakah Password Sudah Benar?',
-                            text: "Periksa Terlebih Dahulu Password Anda!",
+                            title: 'Apakah Data Sudah Benar?',
+                            text: "Periksa Data Terlebih Dahulu!",
                             type: 'warning',
                             showCancelButton: true,
                             confirmButtonColor: '#3085d6',
@@ -65,6 +97,19 @@
                                 $('#profil').submit();
                             }
                             })
+                    });
+                    $('#defaultModal').on('show.bs.modal', function(e) {
+                        var $modal = $(this),
+                            esseyId = e.relatedTarget.id;
+                        $.ajax({
+                            type:"GET",
+                            url:"{{url('jenis')}}/"+esseyId+"",
+                            success: function(data) {
+                                $("#jenis").val(data.jenis);
+                                $("#nominal").val(data.nominal);
+                                $('#profil').attr('action', "{{url('jenis/update')}}/"+esseyId+"");
+                            }
+                        });
                     });
                 });
         </script>

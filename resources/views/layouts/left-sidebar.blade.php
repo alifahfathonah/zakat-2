@@ -39,10 +39,10 @@
                             <li><a href="{{route('profil.edit')}}"><i class="material-icons">person</i>Profile</a></li>
                             <li role="seperator" class="divider"></li>
                             <li><a href="{{ route('password.change') }}"><i class="material-icons">https</i>Ganti Password</a></li>
-                            {{--  <li><a href="javascript:void(0);"><i class="material-icons">shopping_cart</i>Sales</a></li>
-                            <li><a href="javascript:void(0);"><i class="material-icons">favorite</i>Likes</a></li>
-                            <li role="seperator" class="divider"></li>
-                            <li><a href="javascript:void(0);"><i class="material-icons">input</i>Sign Out</a></li>  --}}
+                            <li><a href="{{ route('jeniszakat.change') }}"><i class="material-icons">list</i>Atur Jenis Zakat</a></li>
+                            {{--  <li><a href="javascript:void(0);"><i class="material-icons">favorite</i>Likes</a></li>  --}}
+                            {{--  <li role="seperator" class="divider"></li>  --}}
+                            {{--  <li><a href="javascript:void(0);"><i class="material-icons">input</i>Sign Out</a></li>  --}}
                         </ul>
                     </div>
                 </div>
@@ -58,7 +58,7 @@
                             <span>Dashboard</span>
                         </a>
                     </li>
-                    <li class="{{ (\Request::route()->getName() == 'zakat' || \Request::route()->getName() == 'zakat.create' || \Request::route()->getName() == 'zakat.createOther' || \Request::route()->getName() == 'zakat.confirmation' || \Request::route()->getName() == 'zakat.edit') ? 'active' : '' }}">
+                    <li class="{{ (\Request::route()->getName() == 'zakat' || \Request::route()->getName() == 'zakat.create' || \Request::route()->getName() == 'zakat.createOther' || \Request::route()->getName() == 'zakat.confirmation' || \Request::route()->getName() == 'zakat.edit' || \Request::route()->getName() == 'jeniszakat.change') ? 'active' : '' }}">
                         <a href="{{route('zakat')}}">
                             <i class="material-icons">account_balance_wallet</i>
                             <span>Zakat</span>

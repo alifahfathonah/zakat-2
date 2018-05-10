@@ -37,7 +37,7 @@ class ZakatController extends Controller
 
     public function create($id = null)
     {
-        $jenis_zakats = JenisZakat::latest()->take(4)->get();
+        $jenis_zakats = JenisZakat::all();
         if ($id == null) {
            return view('bayar-zakat', compact('jenis_zakats'));
         } else{
@@ -68,7 +68,7 @@ class ZakatController extends Controller
 
     public function getNominal(Request $request, $nominal)
     {
-        $hasil = JenisZakat::find($nominal);
+        $hasil = JenisZakat::findOrfail($nominal);
         return Response::json($hasil);
     }
 
@@ -341,16 +341,26 @@ class ZakatController extends Controller
         return $tgl_indo;
     }
 
-    public function storeJenis(Request $request)
+    public function showJenis()
     {
-        // for ($x = 1; $x < 5; $x++) {
-        //     JenisZakat::create([
-        //         'jenis' => $request->jenis.$x,
-        //         'nominal' => $request->nominal.$x,
-        //     ]);
-        // }
-        dd($request);
+        $jenises = JenisZakat::all()->where('nominal', '!=', 0);
+        
+        return view('zakat.jenis-zakat', compact('jenises'));
+    }
 
-        return redirect()->route('home')->withSuccess('Jenis Zakat Berhasil diinput');
+    public function updateJenis($id)
+    {
+        $jenis = JenisZakat::findOrfail($id);
+        $jenis->jenis = request('jenis');
+        $jenis->nominal = request('nominal');
+        $jenis->save();
+        
+        return redirect()->back()->withSuccess('Jenis Zakat '.$jenis->jenis.' Berhasil Dirubah');
+    }
+
+    public function getJenis($id)
+    {
+        $hasil = JenisZakat::findOrfail($id);
+        return Response::json($hasil);
     }
 }
