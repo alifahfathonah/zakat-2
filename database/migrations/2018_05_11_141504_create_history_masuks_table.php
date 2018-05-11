@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePengeluaransTable extends Migration
+class CreateHistoryMasuksTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class CreatePengeluaransTable extends Migration
      */
     public function up()
     {
-        Schema::create('pengeluarans', function (Blueprint $table) {
+        Schema::create('history_masuks', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('jumlah')->nullable();
-            $table->string('keterangan')->nullable();
+            $table->string('ip_address',15)->nullable();
+            $table->string('OS',30)->nullable();
+            $table->string('browser',120)->nullable();
             $table->integer('user_id')->unsigned();
             $table->index('user_id');
             $table->timestamps();
@@ -32,6 +33,6 @@ class CreatePengeluaransTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pengeluarans');
+        Schema::dropIfExists('history_masuks');
     }
 }

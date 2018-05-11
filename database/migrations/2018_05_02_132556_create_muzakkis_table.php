@@ -16,10 +16,10 @@ class CreateMuzakkisTable extends Migration
         Schema::create('muzakkis', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('email');
-            $table->string('nohp', 16);
-            $table->string('alamat');
-            $table->string('jeniskelamin',1);
+            $table->string('email')->nullable();
+            $table->string('nohp', 16)->nullable();
+            $table->string('alamat')->nullable();
+            $table->string('jeniskelamin',1)->nullable();
             $table->timestamps();
         });
     }
