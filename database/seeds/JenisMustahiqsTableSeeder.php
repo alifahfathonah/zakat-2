@@ -12,7 +12,8 @@ class JenisMustahiqsTableSeeder extends Seeder
      */
     public function run()
     {
-        JenisMustahiq::create(
+        $jenises = 
+        [    
             [
             'jenis' => 'Fakir',
             'keterangan' => 'orang yang tidak memiliki harta',
@@ -53,6 +54,9 @@ class JenisMustahiqsTableSeeder extends Seeder
             'keterangan' => 'panitia penerima dan pengelola dana zakat',
             'jumlah_bagian' => '150000'
             ]
-        );
+        ];
+        foreach ($jenises as $jenis) {
+            JenisMustahiq::create($jenis);
+        }
     }
 }

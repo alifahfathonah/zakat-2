@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use JenisZakat;
+use App\JenisZakat;
 
 class JenisZakatsTableSeeder extends Seeder
 {
