@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
+use App\HistoryMasuk;
+use Illuminate\Support\Facades\Auth;
 use validator;
 
 
@@ -52,7 +54,24 @@ class LoginController extends Controller
         return $request->only($this->username(), 'password','status');
     }
 
-        /**
+    /**
+     * The user has been authenticated.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  mixed  $user
+     * @return mixed
+     */
+    protected function authenticated(Request $request, $user)
+    {
+        HistoryMasuk::create([
+            'ip_address' => \Request::ip(),
+            'OS' => \UserAgent::userOs(),
+            'browser' => \UserAgent::browser(),
+            'user_id' => \Auth::user()->id,
+        ]);
+    }
+    
+    /**
      * Attempt to log the user into the application.
      *
      * @param  \Illuminate\Http\Request  $request
