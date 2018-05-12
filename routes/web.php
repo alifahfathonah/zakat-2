@@ -48,5 +48,9 @@ Route::get('/role/{id}', 'UserController@editRole')->name('role.edit');
 Route::patch('role-update/{id}', 'UserController@updateRole')->name('role.update');
 
 Route::get('/jenis-zakat', 'ZakatController@showJenis')->name('jeniszakat.change');
-Route::get('jenis/{id}', 'ZakatController@getJenis');
-Route::post('jenis/update/{id}', 'ZakatController@updateJenis')->name('jeniszakat.update');
+Route::get('jenis-zakat/{id}', 'ZakatController@getJenis');
+Route::post('jenis-zakat/update/{id}', 'ZakatController@updateJenis')->name('jeniszakat.update');
+
+Route::get('/jenis-mustahiq', 'MustahiqController@showJenis')->name('jenismustahiq.change');
+Route::get('jenis-mustahiq/{id}', 'MustahiqController@getJenis');
+Route::post('jenis-mustahiq/update/{id}', 'MustahiqController@updateJenis')->name('jenismustahiq.update');

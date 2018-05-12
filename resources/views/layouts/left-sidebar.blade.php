@@ -64,7 +64,7 @@
                             <span>Zakat</span>
                         </a>
                     </li>
-                    <li>
+                    <li class="{{ (\Request::route()->getName() == 'jenismustahiq.change') ? 'active' : '' }}">
                         <a href="mustahiq.php">
                             <i class="material-icons">face</i>
                             <span>Mustahiq</span>

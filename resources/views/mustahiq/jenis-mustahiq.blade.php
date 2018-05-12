@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
-@section('title', 'Jenis Zakat')
+@section('title', 'Jenis Mustahiq')
 @section('content')
 <div class="block-header">
-            <h2>JENIS ZAKAT</h2>
+            <h2>JENIS MUSTAHIQ</h2>
         </div>
         <div class="row clearfix">
         	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -12,7 +12,7 @@
                         <div class="row clearfix">
                             <div class="col-xs-12 col-sm-11">
                                 <h2>
-                                    JENIS ZAKAT
+                                    JENIS MUSTAHIQ
                                 </h2>  
                             </div>
                         </div>
@@ -23,7 +23,8 @@
                                 <tr>
                                     <th>#</th>
                                     <th>JENIS</th>
-                                    <th>NOMINAL</th>
+                                    <th>KETERANGAN</th>
+                                    <th>JUMLAH BAGIAN</th>
                                     <th>AKSI</th>
                                 </tr>
                             </thead>
@@ -33,7 +34,8 @@
                                     <tr>
                                         <td>{{$i}}</td>
                                         <td>{{$jenis->jenis}}</td>
-                                        <td>{{$jenis->nominal}}</td>
+                                        <td>{{$jenis->keterangan}}</td>
+                                        <td>{{$jenis->jumlah_bagian}}</td>
                                         <td><a href="#" id="{{$i}}" class="btn bg-indigo waves-effect modal" data-toggle="modal" data-target="#defaultModal">Edit</a></td>
                                     </tr>
                                     @php($i++)
@@ -57,19 +59,26 @@
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
                                         <div class="form-group">
                                             <div class="form-line">
-                                                <input type="text" id="jenis" name="jenis" class="form-control" placeholder="Jenis">
+                                                <input type="text" id="jenis" name="jenis" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                                <input type="text" id="keterangan" name="keterangan" class="form-control">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
                                         <div class="form-group">
                                             <div class="form-line">
-                                                <input type="text" id="nominal" name="nominal" class="form-control" placeholder="Nominal">
+                                                <input type="text" id="jumlah_bagian" name="jumlah_bagian" class="form-control">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                        <input type="button" name="insert" id="insert" value="MASUKKAN" class="btn btn-primary m-t-15 waves-effect">
+                                        <input type="button" name="insert" id="insert" value="UBAH" class="btn btn-primary m-t-15 waves-effect">
                                     </div>
                                 </div>
                         </form>
@@ -96,18 +105,19 @@
                             if (result.value) {
                                 $('#profil').submit();
                             }
-                            })
+                        })
                     });
                     $('#defaultModal').on('show.bs.modal', function(e) {
                         var $modal = $(this),
                             esseyId = e.relatedTarget.id;
                         $.ajax({
                             type:"GET",
-                            url:"{{url('jenis-zakat')}}/"+esseyId+"",
+                            url:"{{url('jenis-mustahiq')}}/"+esseyId+"",
                             success: function(data) {
                                 $("#jenis").val(data.jenis);
-                                $("#nominal").val(data.nominal);
-                                $('#profil').attr('action', "{{url('jenis-zakat/update')}}/"+esseyId+"");
+                                $("#keterangan").val(data.keterangan);
+                                $("#jumlah_bagian").val(data.jumlah_bagian);
+                                $('#profil').attr('action', "{{url('jenis-mustahiq/update')}}/"+esseyId+"");
                             }
                         });
                     });
