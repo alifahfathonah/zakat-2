@@ -134,12 +134,6 @@ class ZakatController extends Controller
             ->join('muzakkis', 'transaksis.muzakki_id', '=', 'muzakkis.id')
             ->join('users', 'transaksis.user_id', '=', 'users.id')
             ->orderBy('transaksis.id');
-        
-        // $zakats = DB::table('transaksis')->join('muzakkis', 'transaksis.muzakki_id', '=', 'muzakkis.id')
-        //     ->join('users', 'transaksis.user_id', '=', 'users.id')
-        //     ->join('jenis_zakats', 'transaksis.jeniszakat_id', '=', 'jenis_zakats.id')
-        //     ->select(['transaksis.id','muzakkis.name as nama', 'transaksis.jiwa', 'jenis_zakats.jenis', 'transaksis.beras_fitrah', 'transaksis.uang_fitrah', 'transaksis.fidyah', 'transaksis.zakat_maal', 'transaksis.infaq', 'users.name'])
-        //     ->where('transaksis.deleted_at', '=', NULL);
 
         return Datatables::of($zakats)
             ->addColumn('action', function ($zakats) {

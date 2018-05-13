@@ -115,7 +115,6 @@
 					});
                 });
                 $("#tbzakat").on("click", "#hapus", function(){
-                    {{--  return confirm("Yakin ingin dihapus?");  --}}
                     swal({
                         title: 'Apakah Kamu Yakin Ingin Dihapus?',
                         text: "Hubungi Webmaster Untuk Mengembalikan Data Transaksi Yang Terhapus",

@@ -65,7 +65,7 @@
 										<option value="">-- pilih nominal zakat --</option> 
                                         @foreach($jenis_zakats as $jenis)
                                             <option value="{{ $jenis->id }}"    
-												@if($jenis->id === $transaksi->jeniszakat_id)
+												@if($transaksi->jeniszakat_id === $jenis->id)
                                                     selected
                                                 @endif
 											>{{ $jenis->jenis }}</option>

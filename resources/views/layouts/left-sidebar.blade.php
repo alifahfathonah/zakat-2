@@ -40,6 +40,7 @@
                             <li role="seperator" class="divider"></li>
                             <li><a href="{{ route('password.change') }}"><i class="material-icons">https</i>Ganti Password</a></li>
                             <li><a href="{{ route('jeniszakat.change') }}"><i class="material-icons">list</i>Atur Jenis Zakat</a></li>
+                            <li><a href="{{ route('jenismustahiq.change') }}"><i class="material-icons">list</i>Atur Jenis Mustahiq</a></li>
                             {{--  <li><a href="javascript:void(0);"><i class="material-icons">favorite</i>Likes</a></li>  --}}
                             {{--  <li role="seperator" class="divider"></li>  --}}
                             {{--  <li><a href="javascript:void(0);"><i class="material-icons">input</i>Sign Out</a></li>  --}}
@@ -64,8 +65,8 @@
                             <span>Zakat</span>
                         </a>
                     </li>
-                    <li class="{{ (\Request::route()->getName() == 'jenismustahiq.change') ? 'active' : '' }}">
-                        <a href="mustahiq.php">
+                    <li class="{{ (\Request::route()->getName() == 'jenismustahiq.change') || (\Request::route()->getName() == 'mustahiq') ? 'active' : '' }}">
+                        <a href="{{route('mustahiq')}}">
                             <i class="material-icons">face</i>
                             <span>Mustahiq</span>
                         </a>

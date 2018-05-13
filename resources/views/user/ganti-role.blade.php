@@ -24,7 +24,7 @@
                             <div class="form-group form-float">
                                 <div>
                                     <select name="role" id="tipe" required="" class="select">
-										<option value="">-- pilih nominal zakat --</option> 
+										<option value="">-- pilih role --</option> 
                                         @foreach($roles as $role)
                                             <option value="{{ $role->id }}" @if($role->id === $user->role_id)
                                                                                 selected

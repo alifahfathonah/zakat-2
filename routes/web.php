@@ -51,6 +51,12 @@ Route::get('/jenis-zakat', 'ZakatController@showJenis')->name('jeniszakat.change
 Route::get('jenis-zakat/{id}', 'ZakatController@getJenis');
 Route::post('jenis-zakat/update/{id}', 'ZakatController@updateJenis')->name('jeniszakat.update');
 
+Route::get('/mustahiq', 'MustahiqController@index')->name('mustahiq');
+Route::get('list-mustahiq/', 'MustahiqController@getMustahiqData');
 Route::get('/jenis-mustahiq', 'MustahiqController@showJenis')->name('jenismustahiq.change');
 Route::get('jenis-mustahiq/{id}', 'MustahiqController@getJenis');
 Route::post('jenis-mustahiq/update/{id}', 'MustahiqController@updateJenis')->name('jenismustahiq.update');
+Route::post('tambah-mustahiq', 'MustahiqController@storeMustahiq')->name('mustahiq.store');
+Route::get('tampilkan-mustahiq/{id}', 'MustahiqController@getMustahiq')->name('mustahiq.show');
+Route::patch('mustahiq-update/{id}', 'MustahiqController@updateMustahiq')->name('mustahiq.update');
+Route::delete('mustahiq/delete/{id}','MustahiqController@destroy')->name('mustahiq.destroy');
