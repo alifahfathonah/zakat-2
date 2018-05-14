@@ -116,7 +116,7 @@
                                         </div>
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                        <input type="button" name="insert" id="insert" value="UBAH" class="btn btn-primary m-t-15 waves-effect">
+                                        <input type="button" name="insert" id="insert" value="TAMBAH" class="btn btn-primary m-t-15 waves-effect">
                                     </div>
                                 </div>
                         </form>
@@ -207,8 +207,10 @@
                         }
 					})
                 });
-                function deleteData(id){
+                $("#tbzakat").on("click", "#apus", function(e){
                     var csrf_token = $('meta[name="csrf-token"]').attr("content");
+                    var id = $(this).data("value");
+                    alert(id);
                     swal({
                         title: 'Apakah Kamu Yakin Ingin Dihapus?',
                         text: "Data Akan Dihapus Permanen",
@@ -218,19 +220,19 @@
                         cancelButtonColor: '#d33',
                         confirmButtonText: 'Ya, Saya Yakin',
                         cancelButtonText: 'Tidak, batalkan!',
-                        }).then((result) => {
+                    }).then((result) => {
                         if (result.value) {
                             $.ajax({
                                 url: "{{ url('mustahiq/delete') }}"+ '/' + id,
                                 type: "POST",
                                 data : {'_method' : 'DELETE', '_token' : csrf_token},
-                                success : function(data){
+                                success : function(){
                                     table.ajax.reload();
                                 }
                             })
                         }
-					})
-                }
+					})   
+                });
             } );
         </script>
 @endsection

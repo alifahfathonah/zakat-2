@@ -59,7 +59,7 @@ class MustahiqController extends Controller
         return Datatables::of($mustahiqs)
             ->addColumn('action', function ($mustahiqs) {
                 return '<a title="Rubah Data" id="edit"  data-toggle="modal" data-target="#editModal" name="'.base64_encode($mustahiqs->id).'" class="btn btn-xs btn-primary" ><i class="material-icons">border_color</i></a>'
-                    .'<a title="Hapus Data" onclick="deleteData('.base64_encode($mustahiqs->id).');" class="btn btn-xs btn-danger" ><i class="material-icons">delete</i></a>';
+                    .'<a title="Hapus Data" id="apus" data-value="'.base64_encode($mustahiqs->id).'" class="btn btn-xs btn-danger" ><i class="material-icons">delete</i></a>';
             })
             ->editColumn('id', 'ID: {{$id}}')
             ->make(true);
