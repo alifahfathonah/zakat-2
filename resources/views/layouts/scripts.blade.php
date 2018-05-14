@@ -44,6 +44,8 @@
     <!-- Bootstrap Material Datetime Picker Plugin Js -->
     <script src="{{ asset('theme/plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js') }}"></script>
 
+    <!-- Moment Plugin Js -->
+    <script src="{{ asset('theme/plugins/momentjs/moment.js') }}"></script>
 
     <!-- Demo Js -->
     <script src="{{ asset('theme/js/demo.js') }}"></script>

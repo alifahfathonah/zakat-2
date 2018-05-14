@@ -17,7 +17,7 @@
                     	<form class="form-vertical" id="myform" action="{{route('zakat.store')}}" method="POST">
                     	<h2 class="card-inside-title">DATA MUZAKKI</h2>
 							@csrf
-							@include('input-muzakki')
+							@include('zakat.input-muzakki')
                     		<h2 class="card-inside-title">DATA ZAKAT</h2>
                             <div class="form-group form-float">
                                 <div>

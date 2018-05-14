@@ -60,3 +60,6 @@ Route::post('tambah-mustahiq', 'MustahiqController@storeMustahiq')->name('mustah
 Route::get('tampilkan-mustahiq/{id}', 'MustahiqController@getMustahiq')->name('mustahiq.show');
 Route::patch('mustahiq-update/{id}', 'MustahiqController@updateMustahiq')->name('mustahiq.update');
 Route::delete('mustahiq/delete/{id}','MustahiqController@destroy')->name('mustahiq.destroy');
+
+Route::get('/laporan', 'ReportController@index')->name('report');
+Route::post('buat-laporan', 'ReportController@create')->name('report.create');

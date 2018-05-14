@@ -71,8 +71,8 @@
                             <span>Mustahiq</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="laporan.php">
+                    <li class="{{ (\Request::route()->getName() == 'report') ? 'active' : '' }}">
+                        <a href="{{route('report')}}">
                             <i class="material-icons">assignment</i>
                             <span>Laporan</span>
                         </a>

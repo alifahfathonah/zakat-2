@@ -32,18 +32,18 @@ class ZakatController extends Controller
      */
     public function index()
     {
-        return view('zakat-list');
+        return view('zakat.zakat-list');
     }
 
     public function create($id = null)
     {
         $jenis_zakats = JenisZakat::all();
         if ($id == null) {
-           return view('bayar-zakat', compact('jenis_zakats'));
+           return view('zakat.bayar-zakat', compact('jenis_zakats'));
         } else{
             $idmuzakki = \base64_decode($id);
             $muzakki = Muzakki::findOrfail($idmuzakki);
-            return view('bayar-zakat', compact('jenis_zakats','muzakki'));
+            return view('zakat.bayar-zakat', compact('jenis_zakats','muzakki'));
         }
     	
     }
@@ -125,7 +125,7 @@ class ZakatController extends Controller
         $idTransaksi = base64_decode($id);
         $transaksi = Transaksi::findOrfail($idTransaksi);
 
-        return view('konfirmasi-zakat', compact('transaksi'));
+        return view('zakat.konfirmasi-zakat', compact('transaksi'));
     }
 
     public function getZakatData()
@@ -166,7 +166,7 @@ class ZakatController extends Controller
         $jenis_zakats = JenisZakat::all();
         $transaksi = Transaksi::findOrfail($idTransaksi);
 
-        return view('edit-zakat', compact('transaksi','jenis_zakats'));
+        return view('zakat.edit-zakat', compact('transaksi','jenis_zakats'));
     }
 
     public function updateZakat(Transaksi $transaksi, Request $request)
