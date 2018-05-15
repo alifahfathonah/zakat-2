@@ -50,7 +50,7 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title" id="defaultModalLabel">Modal title</h4>
+                        <h4 class="modal-title" id="defaultModalLabel">Edit Jenis Mustahiq</h4>
                     </div>
                     <div class="modal-body">
                         <form action="" method="post" id="profil">

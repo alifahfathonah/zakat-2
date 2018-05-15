@@ -2,14 +2,14 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Laporan Harian {{\UserAgent::tanggalIndo($tanggalReport)}}</title>
+    <title>Laporan Akhir</title>
     <link rel="stylesheet" href="{{ asset('css/report-template.css') }}" media="all" />
   </head>
   <body onload="window.print();">
-  @php
+  {{--  @php
     $val = array($report->Uang,$report->Maal,$report->Fidyah,$report->Infaq);
     $data = array_sum($val);
-  @endphp
+  @endphp  --}}
     <header class="clearfix">
       <div id="logo">
         <img src="logo.png">
@@ -23,19 +23,19 @@
       </div>
     </header>
     <main>
-      <div id="details" class="clearfix">
+      {{--  <div id="details" class="clearfix">
         <div id="client">
           <div class="to">DIBUAT OLEH:</div>
           <h2 class="name">{{Auth::user()->name}}</h2>
-          {{--  <div class="address">796 Silver Harbour, TX 79273, US</div>  --}}
+          {{--  <div class="address">796 Silver Harbour, TX 79273, US</div>  --
           <div class="email"><a href="mailto:{{Auth::user()->email}}">{{Auth::user()->email}}</a></div>
         </div>
         <div id="invoice">
-          {{--  <h1>LAPORAN KE 3</h1>  --}}
+          {{--  <h1>LAPORAN KE 3</h1>  --}
           <div class="date">Tanggal Cetak: {{\UserAgent::tanggalIndo(date('Y-m-d'))}}</div>
-          {{--  <div class="date">Due Date: 30/06/2014</div>  --}}
+          {{--  <div class="date">Due Date: 30/06/2014</div>  --}
         </div>
-      </div>
+      </div>  --}}
       <table border="0" cellspacing="0" cellpadding="0">
         <thead>
           <tr>

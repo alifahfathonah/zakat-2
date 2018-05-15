@@ -37,7 +37,7 @@ class ZakatController extends Controller
 
     public function create($id = null)
     {
-        $jenis_zakats = JenisZakat::all();
+        $jenis_zakats = JenisZakat::orderBy('id', 'DESC')->take(4)->get();
         if ($id == null) {
            return view('zakat.bayar-zakat', compact('jenis_zakats'));
         } else{
@@ -163,7 +163,7 @@ class ZakatController extends Controller
 
     public function editZakat(Request $resuest, $id){
         $idTransaksi = base64_decode($id);
-        $jenis_zakats = JenisZakat::all();
+        $jenis_zakats = JenisZakat::orderBy('id', 'DESC')->take(4)->get();
         $transaksi = Transaksi::findOrfail($idTransaksi);
 
         return view('zakat.edit-zakat', compact('transaksi','jenis_zakats'));
@@ -336,19 +336,22 @@ class ZakatController extends Controller
 
     public function showJenis()
     {
-        $jenises = JenisZakat::all()->where('nominal', '!=', 0);
+        // $jenises = JenisZakat::get(4)->latest();
         
-        return view('zakat.jenis-zakat', compact('jenises'));
+        return view('zakat.jenis-zakat');
     }
 
-    public function updateJenis($id)
+    public function storeJenis(Request $request)
     {
-        $jenis = JenisZakat::findOrfail($id);
-        $jenis->jenis = request('jenis');
-        $jenis->nominal = request('nominal');
-        $jenis->save();
+        $data = $request->except('_token');
+        for($i = 0; $i < 4 ; $i++) {
+            JenisZakat::create([
+                'jenis' => $data['jenis'][$i],
+                'nominal'=> $data['nominal'][$i]
+            ]);
+        }
         
-        return redirect()->back()->withSuccess('Jenis Zakat '.$jenis->jenis.' Berhasil Dirubah');
+        return redirect()->back()->withSuccess('Jenis Zakat Berhasil Diset');
     }
 
     public function getJenis($id)

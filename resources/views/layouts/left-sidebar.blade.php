@@ -40,7 +40,7 @@
                             <li role="seperator" class="divider"></li>
                             <li><a href="{{ route('password.change') }}"><i class="material-icons">https</i>Ganti Password</a></li>
                             <li><a href="{{ route('jeniszakat.change') }}"><i class="material-icons">list</i>Atur Jenis Zakat</a></li>
-                            <li><a href="{{ route('jenismustahiq.change') }}"><i class="material-icons">list</i>Atur Jenis Mustahiq</a></li>
+                            <li><a href="{{ route('jenismustahiq.change') }}"><i class="material-icons">list</i>Jenis Mustahiq</a></li>
                             {{--  <li><a href="javascript:void(0);"><i class="material-icons">favorite</i>Likes</a></li>  --}}
                             {{--  <li role="seperator" class="divider"></li>  --}}
                             {{--  <li><a href="javascript:void(0);"><i class="material-icons">input</i>Sign Out</a></li>  --}}

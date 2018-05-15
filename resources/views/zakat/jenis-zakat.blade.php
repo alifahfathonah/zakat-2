@@ -21,64 +21,33 @@
                         <table class="table table-hover">
                             <thead>
                                 <tr>
-                                    <th>#</th>
+                                    {{--  <th>#</th>  --}}
                                     <th>JENIS</th>
                                     <th>NOMINAL</th>
-                                    <th>AKSI</th>
+                                    {{--  <th>AKSI</th>  --}}
                                 </tr>
                             </thead>
                             <tbody>
-                                @php($i=1)
-                                @foreach($jenises as $jenis)
+                            
+                            <form action="{{route('jeniszakat.store')}}" method="post" id="jenis">
+                            @csrf
+                                @for($i = 0; $i < 4; $i++)
                                     <tr>
-                                        <td>{{$i}}</td>
-                                        <td>{{$jenis->jenis}}</td>
-                                        <td>{{$jenis->nominal}}</td>
-                                        <td><a href="#" id="{{$i}}" class="btn bg-indigo waves-effect modal" data-toggle="modal" data-target="#defaultModal">Edit</a></td>
+                                        {{--  <td>{{$i}}</td>  --}}
+                                        <td><input type="text" name="jenis[]" class="form-control only-num" placeholder="Jenis"></td>
+                                        <td><input type="text" name="nominal[]" class="form-control only-num" placeholder="Nominal"></td>
+                                        {{--  <td><a href="#" id="{{$i}}" class="btn bg-indigo waves-effect modal" data-toggle="modal" data-target="#defaultModal">Edit</a></td>  --}}
                                     </tr>
-                                    @php($i++)
-                                @endforeach
+                                @endfor
+                                {{--  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">  --}}
+                                    <input type="button" name="insert" id="insert" value="MASUKKAN" class="btn btn-primary m-t-15 waves-effect">
+                                {{--  </div>  --}}
+                            </form>
                             </tbody>
                         </table>
                     </div>
         		</div>
         	</div>
-        </div>
-        <div class="modal fade" id="defaultModal" tabindex="-1" role="dialog">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title" id="defaultModalLabel">Modal title</h4>
-                    </div>
-                    <div class="modal-body">
-                        <form action="" method="post" id="profil">
-                            @csrf
-                            <div class="row clearfix">
-                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
-                                        <div class="form-group">
-                                            <div class="form-line">
-                                                <input type="text" id="jenis" name="jenis" class="form-control" placeholder="Jenis">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
-                                        <div class="form-group">
-                                            <div class="form-line">
-                                                <input type="text" id="nominal" name="nominal" class="form-control" placeholder="Nominal">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                        <input type="button" name="insert" id="insert" value="MASUKKAN" class="btn btn-primary m-t-15 waves-effect">
-                                    </div>
-                                </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
-                    </div>
-                </div>
-            </div>
         </div>
         <script>
                 $(document).ready(function(){
@@ -94,7 +63,7 @@
                             cancelButtonText: 'Tidak, batalkan!',
                             }).then((result) => {
                             if (result.value) {
-                                $('#profil').submit();
+                                $('#jenis').submit();
                             }
                             })
                     });
@@ -110,6 +79,12 @@
                                 $('#profil').attr('action', "{{url('jenis-zakat/update')}}/"+esseyId+"");
                             }
                         });
+                    });
+                    $( ".only-num" ).keypress(function(evt) {
+                        var charCode = (evt.which) ? evt.which : event.keyCode
+                        if (charCode > 31 && (charCode < 48 || charCode > 57))
+                            return false;
+                        return true;
                     });
                 });
         </script>

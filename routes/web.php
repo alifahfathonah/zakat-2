@@ -49,7 +49,7 @@ Route::patch('role-update/{id}', 'UserController@updateRole')->name('role.update
 
 Route::get('/jenis-zakat', 'ZakatController@showJenis')->name('jeniszakat.change');
 Route::get('jenis-zakat/{id}', 'ZakatController@getJenis');
-Route::post('jenis-zakat/update/{id}', 'ZakatController@updateJenis')->name('jeniszakat.update');
+Route::post('jenis-zakat/store', 'ZakatController@storeJenis')->name('jeniszakat.store');
 
 Route::get('/mustahiq', 'MustahiqController@index')->name('mustahiq');
 Route::get('list-mustahiq/', 'MustahiqController@getMustahiqData');
@@ -63,3 +63,6 @@ Route::delete('mustahiq/delete/{id}','MustahiqController@destroy')->name('mustah
 
 Route::get('/laporan', 'ReportController@index')->name('report');
 Route::post('buat-laporan', 'ReportController@create')->name('report.create');
+Route::get('general-report', function () {
+    return view('report.general-report');
+})->name('generalreport');

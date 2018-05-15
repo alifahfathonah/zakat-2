@@ -175,6 +175,7 @@ table tfoot tr td:first-child {
 #thanks{
   font-size: 2em;
   margin-bottom: 50px;
+  float:right;
 }
 
 #notices{
