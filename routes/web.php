@@ -63,6 +63,4 @@ Route::delete('mustahiq/delete/{id}','MustahiqController@destroy')->name('mustah
 
 Route::get('/laporan', 'ReportController@index')->name('report');
 Route::post('buat-laporan', 'ReportController@create')->name('report.create');
-Route::get('general-report', function () {
-    return view('report.general-report');
-})->name('generalreport');
+Route::get('general-report', 'ReportController@show')->name('generalreport');

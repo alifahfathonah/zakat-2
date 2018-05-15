@@ -21,7 +21,7 @@
                 </div>
                 <div class="content">
                     <div class="text">JUMLAH ZAKAT UANG</div>
-                    <p>Rp. <span class="money number count-to" id="uang" data-from="0" data-to="250000" data-speed="1000" data-fresh-interval="20"></span></p>
+                    <p><span class="sales-count-to number count-to" data-to="250000" data-speed="1000" data-fresh-interval="20"></span></p>
                 </div>
             </div>
         </div>
@@ -43,7 +43,7 @@
                 </div>
                 <div class="content">
                     <div class="text">JUMLAH FIDYAH</div>
-                    <p>Rp. <span class="number count-to" data-from="0" data-to="50000" data-speed="1000" data-fresh-interval="20"></span></p>
+                    <p><span class="sales-count-to number count-to" data-from="0" data-to="50000" data-speed="1000" data-fresh-interval="20"></span></p>
                 </div>
             </div>
         </div>
@@ -54,7 +54,7 @@
                 </div>
                 <div class="content">
                     <div class="text">JUMLAH ZAKAT MAAL</div>
-                    <p>Rp. <span class="number count-to" data-from="0" data-to="80000" data-speed="1000" data-fresh-interval="20"></span></p>
+                    <p><span class="sales-count-to number count-to" data-from="0" data-to="80000" data-speed="1000" data-fresh-interval="20"></span></p>
                 </div>
             </div>
         </div>
@@ -65,7 +65,7 @@
                 </div>
                 <div class="content">
                     <div class="text">JUMLAH INFAQ</div>
-                    <p>Rp. <span class="number count-to" data-from="0" data-to="70000" data-speed="1000" data-fresh-interval="20"></span></p>
+                    <p><span class="sales-count-to number count-to" data-from="0" data-to="70000" data-speed="1000" data-fresh-interval="20"></span></p>
                 </div>
             </div>
         </div>
@@ -76,8 +76,8 @@
                     <i class="material-icons">work</i>
                 </div>
                 <div class="content">
-                    <div class="text">JUMLAH UANG MASUK</div>
-                    <p>Rp. <span class="number count-to" data-from="0" data-to="500000" data-speed="1000" data-fresh-interval="20"></span></p>
+                    <div class="text">TOTAL UANG MASUK</div>
+                    <p><span class="sales-count-to number count-to" data-from="0" data-to="500000" data-speed="1000" data-fresh-interval="20"></span></p>
                 </div>
             </div>
          </div>
@@ -101,7 +101,7 @@
         </div>
     </div>
 </div>  --}}
-<script>
+{{--  <script>
     $(document).ready(function(){
         $('.money').data('countToOptions', {
             formatter: function(value, options) {
@@ -109,5 +109,5 @@
             }
         });
     });
-</script>
+</script>  --}}
 @endsection

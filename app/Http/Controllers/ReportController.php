@@ -55,7 +55,11 @@ class ReportController extends Controller
      */
     public function show($id)
     {
-        //
+        $report = DB::table('transaksis')->whereYear('created_at', date('Y'))
+        ->selectRaw("SUM(jiwa) AS Jiwa, SUM(beras_fitrah) AS Beras, SUM(uang_fitrah) AS Uang, SUM(fidyah) AS Fidyah, SUM(zakat_maal) AS Maal, SUM(infaq) AS Infaq")
+        ->first();
+        // dd($report);
+        return view('report.general-report',compact('report'));
     }
 
     /**
