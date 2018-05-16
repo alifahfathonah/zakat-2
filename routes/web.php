@@ -64,3 +64,10 @@ Route::delete('mustahiq/delete/{id}','MustahiqController@destroy')->name('mustah
 Route::get('/laporan', 'ReportController@index')->name('report');
 Route::post('buat-laporan', 'ReportController@create')->name('report.create');
 Route::get('general-report', 'ReportController@show')->name('generalreport');
+
+Route::get('/pengeluaran', 'PengeluaranController@index')->name('pengeluaran');
+Route::get('list-pengeluaran/', 'PengeluaranController@show');
+Route::post('tambah-pengeluaran', 'PengeluaranController@store')->name('pengeluaran.store');
+Route::get('edit-pengeluaran/{id}', 'PengeluaranController@edit')->name('pengeluaran.edit');
+Route::patch('pengeluaran-update/{id}', 'PengeluaranController@update')->name('pengeluaran.update');
+Route::delete('pengeluaran/delete/{id}','PengeluaranController@destroy')->name('pengeluaran.destroy');

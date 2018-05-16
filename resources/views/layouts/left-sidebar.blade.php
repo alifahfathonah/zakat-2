@@ -41,6 +41,7 @@
                             <li><a href="{{ route('password.change') }}"><i class="material-icons">https</i>Ganti Password</a></li>
                             <li><a href="{{ route('jeniszakat.change') }}"><i class="material-icons">list</i>Atur Jenis Zakat</a></li>
                             <li><a href="{{ route('jenismustahiq.change') }}"><i class="material-icons">list</i>Jenis Mustahiq</a></li>
+                            <li><a href="{{ route('pengeluaran') }}"><i class="material-icons">list</i>Pengeluaran</a></li>
                             {{--  <li><a href="javascript:void(0);"><i class="material-icons">favorite</i>Likes</a></li>  --}}
                             {{--  <li role="seperator" class="divider"></li>  --}}
                             {{--  <li><a href="javascript:void(0);"><i class="material-icons">input</i>Sign Out</a></li>  --}}
@@ -71,7 +72,7 @@
                             <span>Mustahiq</span>
                         </a>
                     </li>
-                    <li class="{{ (\Request::route()->getName() == 'report') ? 'active' : '' }}">
+                    <li class="{{ (\Request::route()->getName() == 'report') || (\Request::route()->getName() == 'pengeluaran') ? 'active' : '' }}">
                         <a href="{{route('report')}}">
                             <i class="material-icons">assignment</i>
                             <span>Laporan</span>

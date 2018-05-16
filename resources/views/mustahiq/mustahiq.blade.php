@@ -210,28 +210,14 @@
                 $("#tbzakat").on("click", "#apus", function(e){
                     var csrf_token = $('meta[name="csrf-token"]').attr("content");
                     var id = $(this).data("value");
-                    alert(id);
-                    swal({
-                        title: 'Apakah Kamu Yakin Ingin Dihapus?',
-                        text: "Data Akan Dihapus Permanen",
-                        type: 'warning',
-                        showCancelButton: true,
-                        confirmButtonColor: '#3085d6',
-                        cancelButtonColor: '#d33',
-                        confirmButtonText: 'Ya, Saya Yakin',
-                        cancelButtonText: 'Tidak, batalkan!',
-                    }).then((result) => {
-                        if (result.value) {
-                            $.ajax({
-                                url: "{{ url('mustahiq/delete') }}"+ '/' + id,
-                                type: "POST",
+                    $.ajax({
+                        url: "{{ url('mustahiq/delete') }}"+ '/' + id,
+                        type: "POST",
                                 data : {'_method' : 'DELETE', '_token' : csrf_token},
                                 success : function(){
                                     table.ajax.reload();
                                 }
                             })
-                        }
-					})   
                 });
             } );
         </script>
