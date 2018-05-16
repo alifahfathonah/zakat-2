@@ -26,13 +26,11 @@ class ReportController extends Controller
     public function create(Request $request)
     {
         $tanggalReport = $request->tanggal_report;
-        // $report = Transaksi::where('created_at', '=', $request->tanggal_report)
-                            // ->sum('jiwa')->get();
-        // ->select(DB::raw("SUM(jiwa) AS Jiwa, SUM(beras_fitrah) AS Beras, SUM(uang_fitrah) AS Uang, SUM(fidyah) AS Fidyah, SUM(zakat_maal) AS Maal, SUM(infaq) AS Infaq"))
+       
         $report = DB::table('transaksis')->whereDate('created_at', $request->tanggal_report)
         ->selectRaw("SUM(jiwa) AS Jiwa, SUM(beras_fitrah) AS Beras, SUM(uang_fitrah) AS Uang, SUM(fidyah) AS Fidyah, SUM(zakat_maal) AS Maal, SUM(infaq) AS Infaq")
         ->first();
-        // dd($report);
+        
         return view('report.report-template',compact('report','tanggalReport'));
     }
 
@@ -58,7 +56,7 @@ class ReportController extends Controller
         $report = DB::table('transaksis')->whereYear('created_at', date('Y'))
         ->selectRaw("SUM(jiwa) AS Jiwa, SUM(beras_fitrah) AS Beras, SUM(uang_fitrah) AS Uang, SUM(fidyah) AS Fidyah, SUM(zakat_maal) AS Maal, SUM(infaq) AS Infaq")
         ->first();
-        // dd($report);
+        
         return view('report.general-report',compact('report'));
     }
 
