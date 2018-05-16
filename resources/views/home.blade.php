@@ -6,6 +6,31 @@
     $val = array($report->Uang,$report->Maal,$report->Fidyah,$report->Infaq);
     $data = array_sum($val);
 @endphp
+@if(isset($jenispopuler->jenis1))
+    @php($jenis1 = $jenispopuler->jenis1)
+@else
+    @php($jenis1 = 0)
+@endif
+@if(isset($jenispopuler->jenis2))
+    @php($jenis2 = $jenispopuler->jenis2)
+@else
+    @php($jenis2 = 0)
+@endif
+@if(isset($jenispopuler->jenis3))
+    @php($jenis3 = $jenispopuler->jenis3)
+@else
+    @php($jenis3 = 0)
+@endif
+@if(isset($jenispopuler->jenis4))
+    @php($jenis4 = $jenispopuler->jenis4)
+@else
+    @php($jenis4 = 0)
+@endif
+@if(isset($jenispopuler->beras))
+    @php($beras = $jenispopuler->beras)
+@else
+    @php($beras = 0)
+@endif
 <div class="row clearfix">
     <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
         <div class="info-box bg-light-green hover-expand-effect">
@@ -157,7 +182,7 @@
                 },
                 series: [{
                     name: 'Jumlah',
-                    data: [{{$jenispopuler->jenis1}}, {{$jenispopuler->jenis2}}, {{$jenispopuler->jenis3}}, {{$jenispopuler->jenis4}}, {{$jenispopuler->beras}}]
+                    data: [{{$jenis1}}, {{$jenis2}}, {{$jenis3}}, {{$jenis4}}, {{$beras}}]
 
                 }]
             });

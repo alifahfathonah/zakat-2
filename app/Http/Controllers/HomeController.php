@@ -29,11 +29,6 @@ class HomeController extends Controller
         ->selectRaw("SUM(jiwa) AS Jiwa, SUM(beras_fitrah) AS Beras, SUM(uang_fitrah) AS Uang, SUM(fidyah) AS Fidyah, SUM(zakat_maal) AS Maal, SUM(infaq) AS Infaq")
         ->first();
 
-        // $jenis1 = DB::table('transaksis')->whereYear('created_at', date('Y'))
-        // ->selectRaw("COUNT(jeniszakat_id)")
-        // ->where('jeniszakat_id' )
-        // ->first();
-
         $jenis = JenisZakat::select('id','jenis')->orderBy('id', 'DESC')->take(4)->get();
 
         $jenispopuler = DB::table('transaksis')
