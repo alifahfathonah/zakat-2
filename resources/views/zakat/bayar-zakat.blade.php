@@ -23,7 +23,7 @@
                                 <div>
                                     <select name="tipe" id="tipe" required="" class="select">
 										<option value="">-- pilih nominal zakat --</option>
-										<option value="1">0</option> 
+										<option value="1">Beras</option> 
                                         @foreach($jenis_zakats as $jenis)
                                             <option value="{{ $jenis->id }}">{{ $jenis->jenis }}</option>
                                         @endforeach

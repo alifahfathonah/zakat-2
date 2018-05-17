@@ -118,12 +118,6 @@ class ZakatController extends Controller
                 'infaq' => $request->infaq,
             ]);
         }
-
-        if ($trans->muzakki->email != "-" && $trans->muzakki->email != NULL) {
-            Mail::to($trans->muzakki->email)->send(new ZakatInvoice($trans));
-        }
-        
-        
         $idtrans = base64_encode($trans->id);
         return redirect('konfirmasi/'.$idtrans);
     }
@@ -215,6 +209,10 @@ class ZakatController extends Controller
         $transaksi = Transaksi::findOrfail($id_transaksi);
         $val = array($transaksi->uang_fitrah,$transaksi->fidyah,$transaksi->zakat_maal,$transaksi->infaq);
         $data = array_sum($val);
+
+        if ($transaksi->muzakki->email != "-" && $transaksi->muzakki->email != NULL) {
+            Mail::to($transaksi->muzakki->email)->send(new ZakatInvoice($transaksi));
+        }
 
         return view('zakat.invoice',compact('transaksi','data'));
     }

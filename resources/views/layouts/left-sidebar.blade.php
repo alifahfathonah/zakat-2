@@ -78,24 +78,26 @@
                             <span>Laporan</span>
                         </a>
                     </li>
-                    @if(Auth::user()->hasRole('Administrator'))
                     <li class="{{ (\Request::route()->getName() == 'user' || \Request::route()->getName() == 'profil.edit' || \Request::route()->getName() == 'password.change' || \Request::route()->getName() == 'role.edit') ? 'active' : '' }}">
-                        <a href="{{route('user')}}">
+                        @if(Auth::user()->hasRole('Administrator'))
+                            <a href="{{route('user')}}">
+                        @else
+                            <a href="{{route('profil.edit')}}">
+                        @endif
                             <i class="material-icons">account_box</i>
                             <span>User</span>
                         </a>
                     </li>
-                    @endif
                 </ul>
             </div>
             <!-- #Menu -->
             <!-- Footer -->
             <div class="legal">
                 <div class="copyright">
-                    &copy; 2016 - 2017 <a href="javascript:void(0);">AdminBSB - Material Design</a>.
+                    &copy; {{date('Y')}} <a href="javascript:void(0);">{{ config('app.name', 'Laravel') }}</a>.
                 </div>
                 <div class="version">
-                    <b>Version: </b> 1.0.5
+                    <b>Version: </b> 2.1
                 </div>
             </div>
             <!-- #Footer -->

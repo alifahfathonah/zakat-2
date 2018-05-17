@@ -66,7 +66,7 @@
 										<option value="1"
 											@if($transaksi->jeniszakat_id === 1)
                                                 selected
-                                            @endif>0</option> 
+                                            @endif>Beras</option> 
                                         @foreach($jenis_zakats as $jenis)
                                             <option value="{{ $jenis->id }}"    
 												@if($transaksi->jeniszakat_id === $jenis->id)

@@ -84,6 +84,6 @@ class RegisterController extends Controller
     {
         $this->guard()->logout();
 
-        return redirect()->route('home')->withSuccess('Anda Telah Terdaftar. Mohon Hubungi Webmaster Untuk Mengaktifkan Akun Anda.');
+        return redirect()->route('home')->withSuccess('Anda Telah Terdaftar Namun Akun Anda Belum Aktif. Mohon Hubungi Webmaster Untuk Mengaktifkan Akun Anda.');
     }
 }
