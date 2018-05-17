@@ -83,16 +83,16 @@
                         {{  method_field('PATCH') }}
                         <input type="hidden" name="_id" id="id">
                         <div class="row clearfix">
-                            <div class="form-group form-float">
+                            <div class="form-group">
                                 <div class="form-line">
                                     <input type="text" name="jumlah" id="editjumlah" class="form-control" required="">
-                                    <label class="form-label">Jumlah</label>
+                                    {{--  <label class="form-label">Jumlah</label>  --}}
                                 </div>
                             </div>
-                            <div class="form-group form-float">
+                            <div class="form-group">
                                 <div class="form-line">
                                     <input type="text" name="keterangan" id="editketerangan" class="form-control" required="">
-                                    <label class="form-label">Keterangan</label>
+                                    {{--  <label class="form-label">Keterangan</label>  --}}
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
@@ -173,8 +173,8 @@
                 var csrf_token = $('meta[name="csrf-token"]').attr("content");
                 var id = $(this).data("value");
                 swal({
-                    title: 'Apakah Data Sudah Sesuai?',
-                    text: "Data Bisa Diedit Kembali",
+                    title: 'Yakin Ingin Dihapus?',
+                    text: "Data Tidak Bisa Dikembalikan",
                     type: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',

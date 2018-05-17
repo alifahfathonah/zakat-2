@@ -143,22 +143,6 @@
                     {data: 'action', name: 'action', orderable: false, searchable: false},
                 ],
                 });
-                $("#tbzakat").on("click", "#hapus", function(){
-                    swal({
-                        title: 'Apakah Kamu Yakin Ingin Dihapus?',
-                        text: "Hubungi Webmaster Untuk Mengembalikan Data Transaksi Yang Terhapus",
-                        type: 'warning',
-                        showCancelButton: true,
-                        confirmButtonColor: '#3085d6',
-                        cancelButtonColor: '#d33',
-                        confirmButtonText: 'Ya, Saya Yakin',
-                        cancelButtonText: 'Tidak, batalkan!',
-                        }).then((result) => {
-                        if (result.value) {
-                            $('#myform').submit();
-                        }
-					})
-                });
                 $('#editModal').on('show.bs.modal', function(e) {
                     var $modal = $(this),
                         mustahiqId = e.relatedTarget.name;
@@ -210,14 +194,27 @@
                 $("#tbzakat").on("click", "#apus", function(e){
                     var csrf_token = $('meta[name="csrf-token"]').attr("content");
                     var id = $(this).data("value");
-                    $.ajax({
-                        url: "{{ url('mustahiq/delete') }}"+ '/' + id,
-                        type: "POST",
+                    swal({
+                        title: 'Apakah Kamu Yakin Ingin Dihapus?',
+                        text: "Data Tidak Bisa Dikembalikan",
+                        type: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Ya, Saya Yakin',
+                        cancelButtonText: 'Tidak, batalkan!',
+                        }).then((result) => {
+                        if (result.value) {
+                            $.ajax({
+                                url: "{{ url('mustahiq/delete') }}"+ '/' + id,
+                                type: "POST",
                                 data : {'_method' : 'DELETE', '_token' : csrf_token},
                                 success : function(){
                                     table.ajax.reload();
                                 }
                             })
+                        }
+					})
                 });
             } );
         </script>
