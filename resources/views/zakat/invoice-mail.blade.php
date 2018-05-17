@@ -1,311 +1,154 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>Kwitansi Untuk {{$transaksi->muzakki->name}}</title>
-    <style>
-      @font-face {
-        font-family: SourceSansPro;
-        src: url(SourceSansPro-Regular.ttf);
-      }
+<doctype html>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <title>Invoice Untuk {{$transaksi->muzakki->name}}</title>
+      <style> 	     .invoice-box{ 	    background-color: #FFFFFF;         max-width:800px;         margin:30px 0;         padding:30px;         border:1px solid #eee;         box-shadow:0 0 10px rgba(0, 0, 0, .15);         font-size:16px;         line-height:24px;         font-family:'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;         color:#555;     } 	 	.invoice-boxx{ 	    background-image: url("http://images.alphacoders.com/458/458169.jpg");         max-width:800px;         margin:auto;         padding:30px;         border:1px solid #eee;         box-shadow:0 0 10px rgba(0, 0, 0, .15);         font-size:16px;         line-height:24px;         font-family:'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;         color:#f7f7f7;     } 	 .btn {   background: #3cb0fd;   background-image: -webkit-linear-gradient(top, #3cb0fd, #3cb0fd);   background-image: -moz-linear-gradient(top, #3cb0fd, #3cb0fd);   background-image: -ms-linear-gradient(top, #3cb0fd, #3cb0fd);   background-image: -o-linear-gradient(top, #3cb0fd, #3cb0fd);   background-image: linear-gradient(to bottom, #3cb0fd, #3cb0fd);   -webkit-border-radius: 4;   -moz-border-radius: 4;   border-radius: 4px;   font-family: Arial;   color: #ffffff;   font-size: 35px;   padding: 6px 16px 10px 20px;   text-decoration: none; }  .btn:hover {   background: #3cb0fd;   background-image: -webkit-linear-gradient(top, #3cb0fd, #3cb0fd);   background-image: -moz-linear-gradient(top, #3cb0fd, #3cb0fd);   background-image: -ms-linear-gradient(top, #3cb0fd, #3cb0fd);   background-image: -o-linear-gradient(top, #3cb0fd, #3cb0fd);   background-image: linear-gradient(to bottom, #3cb0fd, #3cb0fd);   text-decoration: none; }  	     .invoice-box table{         width:100%;         line-height:inherit;         text-align:left;     }          .invoice-box table td{         padding:5px;         vertical-align:top;     }          .invoice-box table tr td:nth-child(2){         text-align:right;     }          .invoice-box table tr.top table td{         padding-bottom:20px;     }          .invoice-box table tr.top table td.title{         font-size:45px;         line-height:45px;         color:#333;     }          .invoice-box table tr.information table td{         padding-bottom:40px;     }          .invoice-box table tr.heading td{         background:#EEEEE0;         border-bottom:1px solid #ddd;         font-weight:bold;     }          .invoice-box table tr.details td{         padding-bottom:20px;     }          .invoice-box table tr.item td{         border-bottom:1px solid #eee;     }          .invoice-box table tr.item.last td{         border-bottom:none;     }          .invoice-box table tr.total td:nth-child(2){         border-top:2px solid #eee;         font-weight:bold;     }          @media only screen and (max-width: 600px) {         .invoice-box table tr.top table td{             width:100%;             display:block;             text-align:center;         }                  .invoice-box table tr.information table td{             width:100%;             display:block;             text-align:center;         }     }     </style>
+   </head>
+   @php
+    $val = array($transaksi->uang_fitrah,$transaksi->fidyah,$transaksi->zakat_maal,$transaksi->infaq);
+    $data = array_sum($val);
+   @endphp
+   <body>
+      <div class="invoice-boxx">
+      <h1 align = "center">{{ config('app.name', 'Laravel') }}</h1>
+      <div class="invoice-box">
+         <table cellpadding="0" cellspacing="0">
+         <tr class="top">
+            <td colspan="2">
+               <table>
+                  <tr>
+                     <td class="title"><img src="{{ asset('logo.png')}}" style="width:50%; max-width:100px;"></td>
+                     <td> No Invoice: INVOICE-00{{$transaksi->id}}<br>
+                          Dibuat tanggal: Jakarta, {{\UserAgent::tanggalIndo(date('Y-m-d'))}}<br>
+                          {{--  Due: {{{invoice_date_due}}}                             --}}
+                      </td>
+                  </tr>
+               </table>
+            </td>
+         </tr>
+         <tr class="information">
+            <td>                     
+              <tr>
+                  <td>
+                    PRISMA<br>
+                    Jl. Al - Mustaqim no. 20 Jak-Sel 12790<br>
+                    DKI Jakarta<br>                             
+                  </td>
+                  <td>
+                    <strong>Diberikan Kepada:</strong><br>                               
+                    {{$transaksi->muzakki->name}}<br> 								
+                    {{$transaksi->muzakki->alamat}}<br>
+                  </td>
+              </tr>
+            </td>	    		    
+          </tr> 			
+         <table>
+            <tr class="heading">
+               <td>                     Item                 </td>
+               <td>                     Jumlah                 </td>
+            </tr>
 
-      .clearfix:after {
-        content: "";
-        display: table;
-        clear: both;
-      }
+          @isset($transaksi->jiwa)
+            <tr class="details">
+              <td>               
+                Jiwa                 
+              </td>
+              <td>                     
+                {{$transaksi->jiwa}}                 
+              </td>
+            </tr>
+          @endisset
 
-      a {
-        color: #0087C3;
-        text-decoration: none;
-      }
+          @isset($transaksi->beras_fitrah)
+            <tr class="details">
+              <td>               
+                Zakat Fitrah Beras                 
+              </td>
+              <td>                     
+                {{$transaksi->beras_fitrah}}                 
+              </td>
+            </tr>
+          @endisset
 
-      body {
-        position: relative;
-        width: 21cm;  
-        height: 29.7cm; 
-        margin: 0 auto; 
-        color: #555555;
-        background: #FFFFFF; 
-        font-family: Arial, sans-serif; 
-        font-size: 14px; 
-        font-family: SourceSansPro;
-      }
+          @isset($transaksi->uang_fitrah)
+            <tr class="details">
+              <td>               
+                Zakat Fitrah Uang                 
+              </td>
+              <td>                     
+                {{$transaksi->uang_fitrah}}                 
+              </td>
+            </tr>
+          @endisset
 
-      header {
-        padding: 10px 0;
-        margin-bottom: 20px;
-        border-bottom: 1px solid #AAAAAA;
-      }
+          @isset($transaksi->fidyah)
+            <tr class="details">
+              <td>               
+                Fidyah                 
+              </td>
+              <td>                     
+                {{$transaksi->fidyah}}                 
+              </td>
+            </tr>
+          @endisset
 
-      #logo {
-        float: left;
-        margin-top: 8px;
-      }
+          @isset($transaksi->zakat_maal)
+            <tr class="details">
+              <td>               
+                Zakat Maal            
+              </td>
+              <td>                     
+                {{$transaksi->zakat_maal}}                 
+              </td>
+            </tr>
+          @endisset
 
-      #logo img {
-        height: 70px;
-      }
+          @isset($transaksi->infaq)
+            <tr class="details">
+              <td>               
+                Infaq
+              </td>
+              <td>                     
+                {{$transaksi->infaq}}                 
+              </td>
+            </tr>
+          @endisset
 
-      #company {
-        float: right;
-        text-align: right;
-      }
-
-
-      #details {
-        margin-bottom: 50px;
-      }
-
-      #client {
-        padding-left: 6px;
-        border-left: 6px solid #0087C3;
-        float: left;
-      }
-
-      #client .to {
-        color: #777777;
-      }
-
-      h2.name {
-        font-size: 1.4em;
-        font-weight: normal;
-        margin: 0;
-      }
-
-      #invoice {
-        float: right;
-        text-align: right;
-      }
-
-      #invoice h1 {
-        color: #0087C3;
-        font-size: 2.4em;
-        line-height: 1em;
-        font-weight: normal;
-        margin: 0  0 10px 0;
-      }
-
-      #invoice .date {
-        font-size: 1.1em;
-        color: #777777;
-      }
-
-      table {
-        width: 100%;
-        border-collapse: collapse;
-        border-spacing: 0;
-        margin-bottom: 20px;
-      }
-
-      table th,
-      table td {
-        padding: 20px;
-        background: #EEEEEE;
-        text-align: center;
-        border-bottom: 1px solid #FFFFFF;
-      }
-
-      table th {
-        white-space: nowrap;        
-        font-weight: normal;
-      }
-
-      table td {
-        text-align: right;
-      }
-
-      table td h3{
-        color: #57B223;
-        font-size: 1.2em;
-        font-weight: normal;
-        margin: 0 0 0.2em 0;
-      }
-
-      table .no {
-        color: #FFFFFF;
-        font-size: 1.6em;
-        background: #57B223;
-      }
-
-      table .desc {
-        text-align: left;
-      }
-
-      table .unit {
-        background: #DDDDDD;
-      }
-
-      table .qty {
-      }
-
-      table .total {
-        background: #57B223;
-        color: #FFFFFF;
-      }
-
-      table td.unit,
-      table td.qty,
-      table td.total {
-        font-size: 1.2em;
-      }
-
-      table tbody tr:last-child td {
-        border: none;
-      }
-
-      table tfoot td {
-        padding: 10px 20px;
-        background: #FFFFFF;
-        border-bottom: none;
-        font-size: 1.2em;
-        white-space: nowrap; 
-        border-top: 1px solid #AAAAAA; 
-      }
-
-      table tfoot tr:first-child td {
-        border-top: none; 
-      }
-
-      table tfoot tr:last-child td {
-        color: #57B223;
-        font-size: 1.4em;
-        border-top: 1px solid #57B223; 
-
-      }
-
-      table tfoot tr td:first-child {
-        border: none;
-      }
-
-      #thanks{
-        font-size: 2em;
-        margin-bottom: 50px;
-      }
-
-      #notices{
-        padding-left: 6px;
-        border-left: 6px solid #0087C3;  
-      }
-
-      #notices .notice {
-        font-size: 1.2em;
-      }
-
-      footer {
-        color: #777777;
-        width: 100%;
-        height: 30px;
-        position: absolute;
-        bottom: 0;
-        border-top: 1px solid #AAAAAA;
-        padding: 8px 0;
-        text-align: center;
-      }
-    </style>
-  </head>
-    @php
-        $val = array($transaksi->uang_fitrah,$transaksi->fidyah,$transaksi->zakat_maal,$transaksi->infaq);
-        $data = array_sum($val);
-    @endphp
-  <body>
-    <header class="clearfix">
-      <div id="logo">
-        <img src="{{ asset('logo.png')}}">
+          @if($data > 0)
+            <tr class="total">
+              <td></td>
+              <td>                    
+                Total: Rp. {{number_format($data,0,'',',')}}                 
+              </td>
+            </tr>
+          @endif
+         </table>
+         <p align="center"><strong>Terima Kasih Telah Mempercayakan Kami</strong></p>
       </div>
-      <div id="company">
-        <h2 class="name">{{ config('app.name', 'Laravel') }}</h2>
-        <div>Jl. Al - Mustaqim no. 20 Jak-Sel 12790, DKI Jakarta</div>
-        <div>(602) 519-0450</div>
-        <div><a href="mailto:remajaprisma@gmail.com">remajaprisma@gmail.com</a></div>
+      </hr> 	
+      <div></hr></div>
+      <div class="invoice-box">
+      <h1 align="center">PRISMA</h1>
+      <p align="center">Jl. Al-Mustaqim, RT.1, Mampang Prpt., Kota Jakarta Selatan<br> 
+        Daerah Khusus Ibukota Jakarta 12790<br>  
+        {{--  Phone: +91 8128527865<br>    --}}
+        Email: remajaprisma@gmail.com<br> 
+        {{--  Website:<a href="www.muskaandentalcare.webs.com">www.muskaandentalcare.webs.com</a><br>  --}}
+      </p>
+      <div align="center">
+        <a href="https://www.facebook.com/prismamampang"> 				
+          <img src="https://cdn0.iconfinder.com/data/icons/free-social-media-set/24/facebook-128.png" align="middle" style="width:10%; max-width:50px;"> 			
+        </a> 			
+        <a href="https://www.instagram.com/prismaupdate/"> 				
+          <img src="https://cdn0.iconfinder.com/data/icons/free-social-media-set/24/instagram-128.png" align="middle" style="width:10%; max-width:50px;" > 			
+        </a> 	 			
+        <a href="https://www.youtube.com/c/prismamampang"> 				
+          <img src="https://cdn0.iconfinder.com/data/icons/free-social-media-set/24/youtube2-128.png" align="middle" style="width:10%; max-width:50px;" > 			
+        </a> 
       </div>
+      <div align="center"> 		
+        <a href="https://www.facebook.com/prismamampang"> &copy PRISMA MAMPANG.</a> 	
       </div>
-    </header>
-    <main>
-      <div id="details" class="clearfix">
-        <div id="client">
-          <div class="to">INVOICE TO:</div>
-          <h2 class="name">{{$transaksi->muzakki->name}}</h2>
-          <div class="address">{{$transaksi->muzakki->alamat}}</div>
-          <div class="email"><a href="mailto:{{$transaksi->muzakki->email}}">{{$transaksi->muzakki->email}}</a></div>
-        </div>
-        <div id="invoice">
-          <h1>INVOICE-00{{$transaksi->id}}</h1>
-          <div class="date">Jakarta, {{\UserAgent::tanggalIndo(date('Y-m-d', strtotime($transaksi->created_at)))}}</div>
-          {{--  <div class="date">Due Date: 30/06/2014</div>  --}}
-        </div>
-      </div>
-      <table border="0" cellspacing="0" cellpadding="0">
-        <thead>
-          <tr>
-            <th class="desc">ITEM</th>
-            <th class="total">JUMLAH</th>
-          </tr>
-        </thead>
-        <tbody>
-        @isset($transaksi->jiwa)
-          <tr>
-            <td class="desc"><h3>Jiwa</h3></td>
-            <td class="total">{{$transaksi->jiwa}}</td>
-          </tr>
-        @endisset
-
-        @isset($transaksi->beras_fitrah)
-          <tr>
-            <td class="desc"><h3>Zakat Fitrah Beras</h3></td>
-            <td class="total">{{$transaksi->beras_fitrah}} Liter</td>
-          </tr>
-        @endisset
-
-        @isset($transaksi->uang_fitrah)
-          <tr>
-            <td class="desc"><h3>Zakat Fitrah Uang</h3></td>
-            <td class="total">Rp. {{number_format($transaksi->uang_fitrah,0,'',',')}}</td>
-          </tr>
-        @endisset
-
-        @isset($transaksi->fidyah)
-          <tr>
-            <td class="desc"><h3>Fidyah</h3></td>
-            <td class="total">Rp. {{number_format($transaksi->fidyah,0,'',',')}}</td>
-          </tr>
-        @endisset
-
-        @isset($transaksi->zakat_maal)
-          <tr>
-            <td class="desc"><h3>Zakat Maal</h3></td>
-            <td class="total">Rp. {{number_format($transaksi->zakat_maal,0,'',',')}}</td>
-          </tr>
-        @endisset
-
-        @isset($transaksi->infaq)
-          <tr>
-            <td class="desc"><h3>Infaq</h3></td>
-            <td class="total">Rp. {{number_format($transaksi->infaq,0,'',',')}}</td>
-          </tr>
-        @endisset
-        </tbody>
-        <tfoot>
-        @if($data > 0)
-          <tr>
-            <td>GRAND TOTAL</td>
-            <td>Rp. {{number_format($data,0,'',',')}}</td>
-          </tr>
-          <tr>
-            <td></td>
-            <td></td>
-          </tr>
-        @endif
-        </tfoot>
-      </table>
-      <div id="thanks">Terima Kasih!</div>
-      <div id="notices">
-        <div>NOTICE:</div>
-        <div class="notice">Invoice dibuat di server dan valid walau tanpa tanda tangan.</div>
-      </div>
-    </main>
-    <footer>
-      PRISMA {{date('Y')}}
-    </footer>
-  </body>
+   </body>
 </html>
