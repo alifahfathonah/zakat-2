@@ -135,7 +135,7 @@
                     <table>
                         <tr>
                             <td>
-                                {{ config('app.name', 'Laravel') }}.<br>
+                                PRISMA<br>
                                 Masjid Al - Mustaqim<br>
                                 Jl. Al - Mustaqim, JAK-SEL 12790
                             </td>
@@ -288,7 +288,7 @@
                     <table>
                         <tr>
                             <td>
-                                {{ config('app.name', 'Laravel') }}.<br>
+                                PRISMA<br>
                                 Masjid Al - Mustaqim<br>
                                 Jl. Al - Mustaqim, JAK-SEL 12790
                             </td>

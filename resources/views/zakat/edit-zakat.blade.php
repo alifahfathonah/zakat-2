@@ -66,7 +66,11 @@
 										<option value="1"
 											@if($transaksi->jeniszakat_id == 1)
                                                 selected
-                                            @endif>Lain-lain</option> 
+                                            @endif>Beras</option> 
+										<option value="2"
+											@if($transaksi->jeniszakat_id == 2)
+                                                selected
+                                            @endif>Zakat Maal</option>
                                         @foreach($jenis_zakats as $jenis)
                                             <option value="{{ $jenis->id }}"    
 												@if($transaksi->jeniszakat_id == $jenis->id)

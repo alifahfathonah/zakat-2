@@ -20,7 +20,7 @@
                   <tr>
                      <td class="title"><img src="{{ asset('logo.png')}}" style="width:50%; max-width:100px;"></td>
                      <td> No Invoice: INVOICE-00{{$transaksi->id}}<br>
-                          Dibuat tanggal: Jakarta, {{\UserAgent::tanggalIndo(date('Y-m-d'))}}<br>
+                          Jakarta, {{\UserAgent::tanggalIndo(date('Y-m-d'))}}<br>
                           {{--  Due: {{{invoice_date_due}}}                             --}}
                       </td>
                   </tr>
@@ -66,7 +66,7 @@
                 Zakat Fitrah Beras                 
               </td>
               <td>                     
-                {{$transaksi->beras_fitrah}}                 
+                {{$transaksi->beras_fitrah}} Liter                
               </td>
             </tr>
           @endisset
@@ -77,7 +77,7 @@
                 Zakat Fitrah Uang                 
               </td>
               <td>                     
-                {{$transaksi->uang_fitrah}}                 
+                Rp. {{number_format($transaksi->uang_fitrah,0,'',',')}}                  
               </td>
             </tr>
           @endisset
@@ -88,7 +88,7 @@
                 Fidyah                 
               </td>
               <td>                     
-                {{$transaksi->fidyah}}                 
+                Rp. {{number_format($transaksi->fidyah,0,'',',')}}                
               </td>
             </tr>
           @endisset
@@ -99,7 +99,7 @@
                 Zakat Maal            
               </td>
               <td>                     
-                {{$transaksi->zakat_maal}}                 
+                Rp. {{number_format($transaksi->zakat_maal,0,'',',')}}                  
               </td>
             </tr>
           @endisset
@@ -110,7 +110,7 @@
                 Infaq
               </td>
               <td>                     
-                {{$transaksi->infaq}}                 
+                Rp. {{number_format($transaksi->infaq,0,'',',')}}               
               </td>
             </tr>
           @endisset
@@ -148,7 +148,7 @@
         </a> 
       </div>
       <div align="center"> 		
-        <a href="https://www.facebook.com/prismamampang"> &copy PRISMA MAMPANG.</a> 	
+        <a href="https://www.facebook.com/prismamampang"> PRISMA MAMPANG.</a> 	
       </div>
    </body>
 </html>
