@@ -7,11 +7,13 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\DB;
 use Yajra\Datatables\Datatables;
 use Barryvdh\DomPDF\Facade as PDF;
+use App\Mail\ZakatInvoice;
 use Illuminate\Http\Request;
 use App\JenisZakat;
 use App\Transaksi;
 use App\Muzakki;
 use Response;
+use Mail;
 
 class ZakatController extends Controller
 {
@@ -116,6 +118,12 @@ class ZakatController extends Controller
                 'infaq' => $request->infaq,
             ]);
         }
+
+        if ($trans->muzakki->email != "-" && $trans->muzakki->email != NULL) {
+            Mail::to($trans->muzakki->email)->send(new ZakatInvoice($trans));
+        }
+        
+        
         $idtrans = base64_encode($trans->id);
         return redirect('konfirmasi/'.$idtrans);
     }
@@ -359,4 +367,11 @@ class ZakatController extends Controller
         $hasil = JenisZakat::findOrfail($id);
         return Response::json($hasil);
     }
+
+    // public function coba()
+    // {
+    //     $transaksi = Transaksi::findOrfail(1);
+
+    //     return view('zakat.invoice-mail',compact('transaksi'));
+    // }
 }

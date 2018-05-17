@@ -71,3 +71,6 @@ Route::post('tambah-pengeluaran', 'PengeluaranController@store')->name('pengelua
 Route::get('edit-pengeluaran/{id}', 'PengeluaranController@edit')->name('pengeluaran.edit');
 Route::patch('pengeluaran-update/{id}', 'PengeluaranController@update')->name('pengeluaran.update');
 Route::delete('pengeluaran/delete/{id}','PengeluaranController@destroy')->name('pengeluaran.destroy');
+
+
+// Route::get('coba', 'ZakatController@coba');
