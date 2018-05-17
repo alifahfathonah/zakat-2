@@ -31,6 +31,11 @@
 @else
     @php($beras = 0)
 @endif
+@if(isset($jenispopuler->maal))
+    @php($maal = $jenispopuler->maal)
+@else
+    @php($maal = 0)
+@endif
 <div class="row clearfix">
     <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
         <div class="info-box bg-light-green hover-expand-effect">
@@ -156,7 +161,8 @@
                         'Rp. {{$jenis[1]->jenis}}',
                         'Rp. {{$jenis[2]->jenis}}',
                         'Rp. {{$jenis[3]->jenis}}',
-                        'Beras'
+                        'Beras',
+                        'Zakat Maal'
                     ],
                     crosshair: true
                 },
@@ -182,7 +188,7 @@
                 },
                 series: [{
                     name: 'Jumlah',
-                    data: [{{$jenis1}}, {{$jenis2}}, {{$jenis3}}, {{$jenis4}}, {{$beras}}]
+                    data: [{{$jenis1}}, {{$jenis2}}, {{$jenis3}}, {{$jenis4}}, {{$beras}}, {{$maal}}]
 
                 }]
             });
