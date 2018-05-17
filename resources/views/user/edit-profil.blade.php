@@ -30,7 +30,12 @@
                             <div class="form-group form-float">
                     			<div class="form-line">
                     				<input type="text" name="username" class="form-control" required="" value="{{Auth::user()->username}}">
-                    				<label class="form-label">Username</label>
+                    				@if ($errors->has('username'))
+                                        <span class="invalid-feedback">
+                                            <strong>{{ $errors->first('username') }}</strong>
+                                        </span>
+                                    @endif
+                                    <label class="form-label">Username</label>
                     			</div>
                     		</div>
                             <div class="form-group form-float">

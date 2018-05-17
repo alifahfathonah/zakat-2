@@ -122,7 +122,7 @@ class ZakatController extends Controller
         return redirect('konfirmasi/'.$idtrans);
     }
 
-    public function showInsertedZakat(Request $resuest, $id)
+    public function showInsertedZakat($id)
     {
         $idTransaksi = base64_decode($id);
         $transaksi = Transaksi::findOrfail($idTransaksi);
@@ -139,12 +139,9 @@ class ZakatController extends Controller
 
         return Datatables::of($zakats)
             ->addColumn('action', function ($zakats) {
-                return '<form method="POST" id="myform" action="'.route('zakat.destroy',base64_encode($zakats->id)).'">'
-                .'<input type="hidden" name="_method" value="DELETE">'
-                .'<button title="Hapus Data" type="button" class="btn btn-xs btn-primary waves-effect" id="hapus"><i class="material-icons">delete</i></button>'
-                .'</form>'
-                .'<a title="Rubah Data" class="btn btn-xs btn-primary" href="'. url('edit-transaksi')."/".base64_encode($zakats->id) .'"><i class="material-icons">border_color</i></a>' 
-                .'<a title="Print Kwitansi" href="'. url('make-invoice').'/'.base64_encode($zakats->id).'" class="btn btn-xs btn-primary" target="_blank"><i class="material-icons">print</i></a>';
+                return '<a title="Rubah Data" class="btn btn-xs btn-primary" href="'. url('edit-transaksi')."/".base64_encode($zakats->id) .'"><i class="material-icons">border_color</i></a>' 
+                .'<a title="Print Kwitansi" href="'. url('make-invoice').'/'.base64_encode($zakats->id).'" class="btn btn-xs btn-primary" target="_blank"><i class="material-icons">print</i></a>'
+                .'<a title="Hapus Data" id="apus" data-value="'.base64_encode($zakats->id).'" class="btn btn-xs btn-danger" ><i class="material-icons">delete</i></a>';
             })
             ->addColumn('uang_zakat', function ($zakats) {
                 return 'Rp. '.number_format($zakats->uang_fitrah,0,'',',');

@@ -73,7 +73,7 @@
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
                                         <div class="form-group">
                                             <div class="form-line">
-                                                <input type="text" id="jumlah_bagian" name="jumlah_bagian" class="form-control">
+                                                <input type="text" id="jumlah_bagian" name="jumlah_bagian" class="form-control only-num">
                                             </div>
                                         </div>
                                     </div>

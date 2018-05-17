@@ -15,9 +15,9 @@
                                     BUAT LAPORAN
                                 </h2>
                             </div>
-                            <div class="col-xs-12 col-sm-1 align-right">
+                            {{--  <div class="col-xs-12 col-sm-1 align-right">
                                 <a title="General Report" class="btn bg-indigo btn-circle-lg waves-effect waves-circle waves-float col-xs-1" href="{{route('generalreport')}}" target="_blank"><i class="material-icons">assignment</i></a>
-                            </div>
+                            </div>  --}}
                         </div>
         			</div>
                     <div class="body">

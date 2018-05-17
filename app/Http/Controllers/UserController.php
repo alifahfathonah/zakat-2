@@ -82,8 +82,22 @@ class UserController extends Controller
         }
     }
 
+    protected function validator(array $data)
+    {
+        return \Validator::make($data, [
+            'name' => 'required|string|max:150',
+            'email' => 'required|string|email|max:150|unique:users',
+            'username' => 'required|string|max:25|unique:users',
+        ]);
+    }
+
     public function updateProfil(User $user, Request $request)
     {
+        if ($user->username != $request->username) {
+            $this->validator($request->all())->validate();
+        }
+        
+
         $user->update([
             'name' => request('nama'),
             'username' => request('username'),

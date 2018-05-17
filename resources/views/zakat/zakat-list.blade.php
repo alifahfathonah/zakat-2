@@ -84,7 +84,7 @@
         <script>
             jQuery(document).ready( function () {
                 $('#table-hasil').hide();
-                $('#tbzakat').DataTable({
+                var table = $('#tbzakat').DataTable({
                     responsive: true,
                     processing: true,
                     serverSide: true,
@@ -114,10 +114,12 @@
 						}
 					});
                 });
-                $("#tbzakat").on("click", "#hapus", function(){
+                $("#tbzakat").on("click", "#apus", function(e){
+                    var csrf_token = $('meta[name="csrf-token"]').attr("content");
+                    var id = $(this).data("value");
                     swal({
                         title: 'Apakah Kamu Yakin Ingin Dihapus?',
-                        text: "Hubungi Webmaster Untuk Mengembalikan Data Transaksi Yang Terhapus",
+                        text: "Mohon Hubungi Webmaster Untuk Mengembalikan Data",
                         type: 'warning',
                         showCancelButton: true,
                         confirmButtonColor: '#3085d6',
@@ -126,7 +128,14 @@
                         cancelButtonText: 'Tidak, batalkan!',
                         }).then((result) => {
                         if (result.value) {
-                            $('#myform').submit();
+                            $.ajax({
+                                url: "{{ url('zakat/delete') }}"+ '/' + id,
+                                type: "POST",
+                                data : {'_method' : 'DELETE', '_token' : csrf_token},
+                                success : function(){
+                                    table.ajax.reload();
+                                }
+                            })
                         }
 					})
                 });

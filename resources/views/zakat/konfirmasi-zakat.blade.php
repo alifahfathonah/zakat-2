@@ -82,7 +82,7 @@
 							</tr>
 							<tr>
 								<th>JUMLAH ZAKAT MAAL</th>
-								<td>{{"Rp. ".number_format($transaksi->maal,0,'',',').',-' }}</td>
+								<td>{{"Rp. ".number_format($transaksi->zakat_maal,0,'',',').',-' }}</td>
 							</tr>
 							<tr>
 								<th>JUMLAH INFAQ</th>

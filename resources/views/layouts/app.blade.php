@@ -10,6 +10,16 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     @include('layouts.styles')
+    <script>
+        $(document).ready(function(){
+            $( ".only-num" ).keypress(function(evt) {
+                var charCode = (evt.which) ? evt.which : event.keyCode
+                if (charCode > 31 && (charCode < 48 || charCode > 57))
+                    return false;
+                return true;
+            })
+        });
+    </script>
 </head>
 
 <body class="theme-indigo">
