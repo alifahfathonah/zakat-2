@@ -64,12 +64,12 @@
                                     <select name="tipe" id="tipe" required="" class="select">
 										<option value="">-- pilih nominal zakat --</option> 
 										<option value="1"
-											@if($transaksi->jeniszakat_id === 1)
+											@if($transaksi->jeniszakat_id == 1)
                                                 selected
                                             @endif>Lain-lain</option> 
                                         @foreach($jenis_zakats as $jenis)
                                             <option value="{{ $jenis->id }}"    
-												@if($transaksi->jeniszakat_id === $jenis->id)
+												@if($transaksi->jeniszakat_id == $jenis->id)
                                                     selected
                                                 @endif
 											>{{ $jenis->jenis }}</option>
