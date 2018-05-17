@@ -32,7 +32,7 @@
                             </div>
                     		<div class="input-group">
                                 <div class="form-line">
-                                    <input type="text" required="" name="jiwa" id="jiwa" class="form-control only-num" placeholder="Jumlah Jiwa">
+                                    <input type="text" required="true" name="jiwa" id="jiwa" class="form-control only-num" placeholder="Jumlah Jiwa">
                                 </div>
                                 <span class="input-group-addon">Jiwa</span>
                             </div>
@@ -80,12 +80,6 @@
         </div>
 <script>
 	$(document).ready( function () {
-			$( ".only-num" ).keypress(function(evt) {
-				var charCode = (evt.which) ? evt.which : event.keyCode
-				if (charCode > 31 && (charCode < 48 || charCode > 57))
-					return false;
-				return true;
-			});
 			$( ".dec-num" ).keypress(function(evt) {
 				var charCode = (evt.which) ? evt.which : event.keyCode
 				if (charCode > 31 && (charCode != 46 &&(charCode < 48 || charCode > 57)))

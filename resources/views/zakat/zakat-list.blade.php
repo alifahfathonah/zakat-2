@@ -85,9 +85,34 @@
             jQuery(document).ready( function () {
                 $('#table-hasil').hide();
                 var table = $('#tbzakat').DataTable({
+                    dom: 'Bfrtip',
                     responsive: true,
                     processing: true,
                     serverSide: true,
+                    buttons: [
+                        {
+                            extend: 'print',
+                            footer: false,
+                            exportOptions: {
+                                columns: [0,1,2,3,4,5,6,7]
+                            }
+                        },
+                        {
+                            extend: 'pdf',
+                            footer: false,
+                            exportOptions: {
+                                columns: [0,1,2,3,4,5,6,7]
+                            }
+                            
+                        },
+                        {
+                            extend: 'excel',
+                            footer: false,
+                            exportOptions: {
+                                columns: [0,1,2,3,4,5,6,7]
+                            }
+                        } 
+                    ],
                     ajax: {
                         url: '{{ url("list-transaksi") }}'
                     },
@@ -100,7 +125,7 @@
                     {data: 'maal', name: 'zakat_maal'},
                     {data: 'infaq', name: 'infaq'},
                     {data: 'name', name: 'users.name'},
-                    {data: 'action', name: 'action', orderable: false, searchable: false},
+                    {data: 'action', name: 'action', orderable: false, searchable: false, exportable: false},
                 ],
                 });
                 $( "#nm" ).keyup(function() {

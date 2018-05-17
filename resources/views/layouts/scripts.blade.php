@@ -51,11 +51,11 @@
     <script src="{{ asset('theme/js/demo.js') }}"></script>
 
     <!-- DataTable -->
-    <script src="https://cdn.datatables.net/v/dt/dt-1.10.16/r-2.2.1/datatables.min.js"></script>
+    {{--  <script src="https://cdn.datatables.net/v/dt/dt-1.10.16/r-2.2.1/datatables.min.js"></script>  --}}
     {{--  <script src="{{ asset('theme/plugins/datatables/dataTables.bootstrap.js')}}"></script>  --}}
 
     <!-- Jquery DataTable Plugin Js -->
-    {{--  <script src="{{ asset('theme/plugins/jquery-datatable/jquery.dataTables.js')}}"></script>  --}}
+    <script src="{{ asset('theme/plugins/jquery-datatable/jquery.dataTables.js')}}"></script>
     <script src="{{ asset('theme/plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js')}}"></script>
     <script src="{{ asset('theme/plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js')}}"></script>
     <script src="{{ asset('theme/plugins/jquery-datatable/extensions/export/buttons.flash.min.js')}}"></script>

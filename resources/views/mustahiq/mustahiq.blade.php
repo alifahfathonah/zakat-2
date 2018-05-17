@@ -130,9 +130,34 @@
         <script>
             jQuery(document).ready( function () {
                 var table = $('#tbzakat').DataTable({
+                    dom: 'Bfrtip',
                     responsive: true,
                     processing: true,
                     serverSide: true,
+                    buttons: [
+                        {
+                            extend: 'print',
+                            footer: false,
+                            exportOptions: {
+                                columns: [0,1,2]
+                            }
+                        },
+                        {
+                            extend: 'pdf',
+                            footer: false,
+                            exportOptions: {
+                                columns: [0,1,2]
+                            }
+                            
+                        },
+                        {
+                            extend: 'excel',
+                            footer: false,
+                            exportOptions: {
+                                columns: [0,1,2]
+                            }
+                        } 
+                    ],
                     ajax: {
                         url: '{{ url("list-mustahiq") }}'
                     },
