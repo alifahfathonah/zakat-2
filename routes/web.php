@@ -46,6 +46,10 @@ Route::get('/ganti-password', function () {
 Route::patch('ganti-password/{id}', 'UserController@changePassword')->name('password.update');
 Route::get('/role/{id}', 'UserController@editRole')->name('role.edit');
 Route::patch('role-update/{id}', 'UserController@updateRole')->name('role.update');
+Route::get('log-pengguna/', 'UserController@getUserLog');
+Route::get('/history-login', function () {
+    return view('user.login-logs');
+})->name('user.history');
 
 Route::get('/jenis-zakat', 'ZakatController@showJenis')->name('jeniszakat.change');
 Route::get('jenis-zakat/{id}', 'ZakatController@getJenis');
