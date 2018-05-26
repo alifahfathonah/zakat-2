@@ -26,14 +26,15 @@ class HomeController extends Controller
     public function index()
     {
         $report = DB::table('transaksis')->whereYear('created_at', date('Y'))
-        ->selectRaw("SUM(jiwa) AS Jiwa, SUM(beras_fitrah) AS Beras, SUM(uang_fitrah) AS Uang, SUM(fidyah) AS Fidyah, SUM(zakat_maal) AS Maal, SUM(infaq) AS Infaq")
-        ->first();
+                    ->selectRaw("SUM(jiwa) AS Jiwa, SUM(beras_fitrah) AS Beras, SUM(uang_fitrah) AS Uang, SUM(fidyah) AS Fidyah, SUM(zakat_maal) AS Maal, SUM(infaq) AS Infaq")
+                    ->first();
 
         $jenis = JenisZakat::select('id','jenis')->orderBy('id', 'DESC')->take(4)->get();
 
         $jenispopuler = DB::table('transaksis')
                         ->selectRaw('( SELECT COUNT(jeniszakat_id) FROM transaksis WHERE jeniszakat_id='.$jenis[0]->id.') AS jenis1, ( SELECT COUNT(jeniszakat_id) FROM transaksis WHERE jeniszakat_id='.$jenis[1]->id.') AS jenis2, ( SELECT COUNT(jeniszakat_id) FROM transaksis WHERE jeniszakat_id='.$jenis[2]->id.') AS jenis3, ( SELECT COUNT(jeniszakat_id) FROM transaksis WHERE jeniszakat_id='.$jenis[3]->id.') AS jenis4, ( SELECT COUNT(jeniszakat_id) FROM transaksis WHERE jeniszakat_id=1) AS beras, ( SELECT COUNT(jeniszakat_id) FROM transaksis WHERE jeniszakat_id=2) AS maal')
                         ->groupBy('jeniszakat_id')
+                        ->where(\DB::raw('DATE_FORMAT(transaksis.created_at, "%Y")'), '=', date('Y'))
                         ->first();
 
         return view('home', compact('report','jenispopuler','jenis'));

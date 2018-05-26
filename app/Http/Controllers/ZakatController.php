@@ -135,6 +135,7 @@ class ZakatController extends Controller
         $zakats = Transaksi::select(['transaksis.id','muzakkis.name as nama', 'transaksis.jiwa', 'transaksis.beras_fitrah', 'transaksis.uang_fitrah', 'transaksis.fidyah', 'transaksis.zakat_maal', 'transaksis.infaq', 'users.name'])
             ->join('muzakkis', 'transaksis.muzakki_id', '=', 'muzakkis.id')
             ->join('users', 'transaksis.user_id', '=', 'users.id')
+            ->where(\DB::raw('DATE_FORMAT(transaksis.created_at, "%Y")'), '=', date('Y'))
             ->orderBy('transaksis.id');
 
         return Datatables::of($zakats)
