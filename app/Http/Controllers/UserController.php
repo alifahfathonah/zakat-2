@@ -51,8 +51,21 @@ class UserController extends Controller
             ->filterColumn('created_at', function ($query, $keyword) {
                 $query->whereRaw("DATE_FORMAT(created_at,'%m/%d/%Y') like ?", ["%$keyword%"]);
             })
-            ->editColumn('id', 'ID: {{$id}}')
             ->removeColumn('password')
+            ->make(true);
+    }
+
+    public function getUserLog(){
+        $logs = DB::table('history_masuks')->join('users', 'history_masuks.user_id', '=', 'users.id')
+            ->select(['history_masuks.id','history_masuks.ip_address', 'history_masuks.OS', 'history_masuks.browser', 'users.name as nama', 'history_masuks.created_at']);
+
+        return Datatables::of($logs)
+            ->editColumn('created_at', function ($logs) {
+                return $logs->created_at ? with(new Carbon($logs->created_at))->format('m/d/Y H:i:s') : '';
+            })
+            ->filterColumn('created_at', function ($query, $keyword) {
+                $query->whereRaw("DATE_FORMAT(created_at,'%m/%d/%Y') like ?", ["%$keyword%"]);
+            })
             ->make(true);
     }
 

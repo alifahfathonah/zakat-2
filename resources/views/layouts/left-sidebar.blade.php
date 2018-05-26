@@ -37,6 +37,9 @@
                         <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
                         <ul class="dropdown-menu pull-right">
                             <li><a href="{{route('profil.edit')}}"><i class="material-icons">person</i>Profile</a></li>
+                            @if(Auth::user()->hasRole('Administrator'))
+                                <li><a href="{{ route('user.history') }}"><i class="material-icons">list</i>History Login</a></li>
+                            @endif
                             <li role="seperator" class="divider"></li>
                             <li><a href="{{ route('password.change') }}"><i class="material-icons">https</i>Ganti Password</a></li>
                             <li><a href="{{ route('jeniszakat.change') }}"><i class="material-icons">list</i>Atur Jenis Zakat</a></li>
@@ -78,7 +81,7 @@
                             <span>Laporan</span>
                         </a>
                     </li>
-                    <li class="{{ (\Request::route()->getName() == 'user' || \Request::route()->getName() == 'profil.edit' || \Request::route()->getName() == 'password.change' || \Request::route()->getName() == 'role.edit') ? 'active' : '' }}">
+                    <li class="{{ (\Request::route()->getName() == 'user' || \Request::route()->getName() == 'profil.edit' || \Request::route()->getName() == 'password.change' || \Request::route()->getName() == 'role.edit' || \Request::route()->getName() == 'user.history') ? 'active' : '' }}">
                         @if(Auth::user()->hasRole('Administrator'))
                             <a href="{{route('user')}}">
                         @else
