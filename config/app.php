@@ -154,6 +154,7 @@ return [
         /*
          * Package Service Providers...
          */
+        HTMLMin\HTMLMin\HTMLMinServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -215,6 +216,7 @@ return [
         'Datatables' => Yajra\Datatables\Facades\Datatables::class,
         'PDF' => Barryvdh\DomPDF\Facade::class,
         'UserAgent' => App\Helpers\User::class,
+        'HTMLMin' => HTMLMin\HTMLMin\Facades\HTMLMin::class,
 
     ],
 
