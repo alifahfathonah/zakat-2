@@ -21,7 +21,7 @@
                         </div>
         			</div>
                     <div class="body">
-                        <form action="{{route('report.create')}}" method="post" id="profil">
+                        <form action="{{route('report.create')}}" method="post" id="profil" target="_blank">
                             @csrf
                             <div class="form-group form-float">
                     			<div class="form-line">
@@ -42,22 +42,6 @@
         </div>
         <script>
                 $(document).ready(function(){
-                    $("#insert").click(function(){
-                        swal({
-                            title: 'Apakah Password Sudah Benar?',
-                            text: "Periksa Terlebih Dahulu Password Anda!",
-                            type: 'warning',
-                            showCancelButton: true,
-                            confirmButtonColor: '#3085d6',
-                            cancelButtonColor: '#d33',
-                            confirmButtonText: 'Ya, Sudah Benar',
-                            cancelButtonText: 'Tidak, batalkan!',
-                            }).then((result) => {
-                            if (result.value) {
-                                $('#profil').submit();
-                            }
-                            })
-                    });
                     $('#tanggal-report').bootstrapMaterialDatePicker({ 
                         weekStart : 0, 
                         time: false 
