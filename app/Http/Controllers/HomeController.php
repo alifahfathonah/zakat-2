@@ -32,7 +32,7 @@ class HomeController extends Controller
         $jenis = JenisZakat::select('id','jenis')->orderBy('id', 'DESC')->take(4)->get();
 
         $jenispopuler = DB::table('transaksis')
-                        ->selectRaw('( SELECT COUNT(jeniszakat_id) FROM transaksis WHERE jeniszakat_id='.$jenis[0]->id.') AS jenis1, ( SELECT COUNT(jeniszakat_id) FROM transaksis WHERE jeniszakat_id='.$jenis[1]->id.') AS jenis2, ( SELECT COUNT(jeniszakat_id) FROM transaksis WHERE jeniszakat_id='.$jenis[2]->id.') AS jenis3, ( SELECT COUNT(jeniszakat_id) FROM transaksis WHERE jeniszakat_id='.$jenis[3]->id.') AS jenis4, ( SELECT COUNT(jeniszakat_id) FROM transaksis WHERE jeniszakat_id=1) AS beras, ( SELECT COUNT(jeniszakat_id) FROM transaksis WHERE jeniszakat_id=2) AS maal')
+                        ->selectRaw('( SELECT COUNT(jeniszakat_id) FROM transaksis WHERE jeniszakat_id='.$jenis[0]->id.') AS jenis1, ( SELECT COUNT(jeniszakat_id) FROM transaksis WHERE jeniszakat_id='.$jenis[1]->id.') AS jenis2, ( SELECT COUNT(jeniszakat_id) FROM transaksis WHERE jeniszakat_id='.$jenis[2]->id.') AS jenis3, ( SELECT COUNT(jeniszakat_id) FROM transaksis WHERE jeniszakat_id='.$jenis[3]->id.') AS jenis4, ( SELECT COUNT(jeniszakat_id) FROM transaksis WHERE jeniszakat_id=1 AND DATE_FORMAT(created_at, "%Y") = date("Y") ) AS beras, ( SELECT COUNT(jeniszakat_id) FROM transaksis WHERE jeniszakat_id=2 AND DATE_FORMAT(created_at, "%Y") = date("Y") ) AS maal')
                         ->groupBy('jeniszakat_id')
                         ->where(\DB::raw('DATE_FORMAT(transaksis.created_at, "%Y")'), '=', date('Y'))
                         ->first();
